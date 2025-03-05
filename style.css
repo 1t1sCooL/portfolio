@@ -26,7 +26,7 @@ nav ul {
     margin: 0;
     list-style: none;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 nav ul li {
     margin: 0;
@@ -70,17 +70,17 @@ a {
   color: #f5f5f5;
 }
 .skills-lists {
-    display: flex;           /* Включаем flexbox для контейнера */
-    gap: 1.8rem;               /* Расстояние между списками */
-    justify-content: space-between; /* Центрируем списки */
+    display: flex;           
+    gap: 1.8rem;               
+    justify-content: space-between; 
 }
 .skills-lists ul {
-    list-style: none;        /* Убираем стандартные маркеры списка */
+    list-style: none;   
     padding: 0;
     margin: 0;
 }
 .skills-lists li {
-    margin-bottom: 0.5rem;   /* Расстояние между элементами списка */
+    margin-bottom: 0.5rem;  
 }
 .project {
     margin-bottom: 1.5rem;
@@ -116,14 +116,10 @@ footer p {
       max-width: 90%;
     }
   }
-  
   @media (max-width: 768px) {
-    /* Общие стили */
     body {
       font-size: 14px;
     }
-  
-    /* Шапка */
     header h1 {
       font-size: 2rem;
     }
@@ -131,8 +127,6 @@ footer p {
     header p {
       font-size: 1rem;
     }
-  
-    /* Навигация */
     nav ul {
       flex-direction: column;
       text-align: center;
@@ -142,33 +136,24 @@ footer p {
       padding: 0.8rem;
       border: solid black 1px;
     }
-  
-    /* Секции */
     section {
       padding: 1rem;
       margin-bottom: 1.5rem;
     }
-  
     section h2 {
       font-size: 1.5rem;
     }
-  
-    /* Список навыков */
     .skills-lists {
       flex-direction: row;
       gap: 1rem;
     }
-  
     .skills-lists ul {
       width: 100%;
       margin: 0;
     }
-  
     .skills-lists li {
 
     }
-  
-    /* Проекты */
     .project h3 {
       font-size: 1.3rem;
     }
@@ -181,49 +166,36 @@ footer p {
       color: rgb(214, 214, 214);
       text-decoration: underline;
     }
-  
-    /* Контакты */
     #contact ul li {
       margin-bottom: 1rem;
       word-break: break-all;
     }
   }
-  
   @media (max-width: 480px) {
-    /* Минимальные корректировки для очень маленьких экранов */
     header h1 {
       font-size: 1.8rem;
     }
-  
     section {
       border-radius: 4px;
     }
-  
     .project h3 {
       font-size: 1.2rem;
     }
   }
-  
-  /* Адаптивные изображения */
   img {
     max-width: 100%;
     height: auto;
   }
-  
-  /* Адаптивная таблица (если будет добавлена позже) */
   table {
     width: 100%;
     overflow-x: auto;
     display: block;
   }
-  
-  /* Адаптивное видео (если будет добавлено позже) */
   .video-container {
     position: relative;
     padding-bottom: 56.25%; /* 16:9 */
     height: 0;
   }
-  
   .video-container iframe {
     position: absolute;
     top: 0;
@@ -231,15 +203,11 @@ footer p {
     width: 100%;
     height: 100%;
   }
-  
-  /* Дополнительные улучшения для мобилок */
-  @media (hover: none) {
-    /* Отключаем ховер-эффекты на тач-устройствах */
+@media (hover: none) {
     nav ul li a:hover {
       background: transparent;
     }
-  
     .project a:hover {
       text-decoration: none;
     }
-  }
+}
