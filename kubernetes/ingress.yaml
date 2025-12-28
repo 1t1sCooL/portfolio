@@ -2,13 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: main-page
-  namespace: default
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
 spec:
-  ingressClassName: nginx
   rules:
     - host: mmalabugin.ru
       http:
@@ -20,7 +14,3 @@ spec:
                 name: main-page
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - mmalabugin.ru
-      secretName: main-page-tls
