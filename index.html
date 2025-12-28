@@ -1,122 +1,161 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Алабугин Михаил</title>
-		<link rel="stylesheet" href="style.css">
-		<link rel="icon" type="image/png" href="logo.png">
-		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Expires" content="0" />
-	</head>
-	<body >
-		<header>
-			<div class="container">
-            	<h1>Алабугин Михаил</h1>
-            	<p>Software Developer</p>
-            	<p>Создание интерактивных и удобных пользовательских интерфейсов</p>
-       		</div>
-		</header>
-		<nav>
-        	<ul>
-            	<li><a href="#about">Обо мне</a></li>
-            	<li><a href="#skills">Стек</a></li>
-            	<li><a href="#projects">Проекты</a></li>
-            	<li><a href="#contact">Контакты</a></li>
-        	</ul>
-    	</nav>
-		<main>
-			<section id="about">
-            	<h2>Обо мне</h2>
-            	<p>Привет! Меня зовут Алабугин Михаил, я увлеченный разработчик с 5-летним опытом создания динамичных, отзывчивых и доступных пользовательских приложений. Мне нравится работать с современными технологиями для создания удобного взаимодействия с пользователем.</p>
-        	</section>
-			<section id="skills">
-				<h2>Мой Стек</h2>
-				<div class="skills-lists">	
-            		<ul>
-	                	<li>HTML5</li>
-	                	<li>CSS3</li>
-						<li>SCSS/SASS</li>
-						<li>Bootstrap</li>
-						<li>TailwindCSS</li>
-						<li>Cross-Browser <br>Compatibility</li>
-						<li>Styled Components</li>
-						<li>Responsive Design</li>
-						<li>UI/UX Design</li>
-						<!-- <li>Figma</li> -->
-		            </ul>
-		            <ul>
-						<li>JavaScript (ES6+)</li>
-	                	<li>TypeScript</li>
-	                	<li>NodeJS</li>
-		            	<li>React</li>
-		                <li>NextJS</li>
-						<li>Axios</li>
-		                <li>MongoDB</li>
-						<li>React Router</li>
-						<li>AJAX</li>
-		            </ul>
-		            <ul>
-						<li>Git</li>
-		            	<li>GitHub</li>
-		                <li>Redux</li>
-		                <li>Docker</li>
-		                
-						<li>Redux Toolkit</li>
-						<li>Webpack</li>
-						<li>Vite</li>
-						<li>Cypress</li>
-						<li>Jest</li>
-		            </ul>
-				</div>
-            	
-        	</section>
-			<section id="projects">
-	            <h2>Проекты</h2>
-				<div class="project">
-	                <h3>День на Земле</h3>
-	                <p>Простая страница, которая позволяет узнать сколько дней вы на земле. А также часов и минут, если вы точно знаете, когда родились.
-						 Проект сделан на React, Redax, CSS, Vite с использованием условного рендеринга для динамического обновления данных.</p>
-	                <a href="https://mmalabugin.ru/DayOnEarth">Day on Earth</a>
-	                <a href="https://github.com/1t1sCooL/DayOnEarth" target="_blank">Посмотреть код</a>
-	            </div>
-				<div class="project">
-	                <h3>Modal</h3>
-	                <p>Модальное окно, реализованное на React. Проект сделан на React, UseState, SCSS/SASS, Vite с использованием условного рендеринга.</p>
-	                <a href="https://mmalabugin.ru/react-modal">Modal</a>
-	                <a href="https://github.com/1t1sCooL/react-modal" target="_blank">Посмотреть код</a>
-	            </div>
-				<div class="project">
-	                <h3>Counter</h3>
-	                <p>Визуально приятный счетчик, сделанный по технологии React. В проекте используется React, UseState, SCSS/SCSS, Vite.</p>
-	                <a href="https://mmalabugin.ru/react-counter">Counter</a>
-	                <a href="https://github.com/1t1sCooL/react-counter" target="_blank">Посмотреть код</a>
-	            </div>
-	            <div class="project">
-	                <h3>Сайт-портфолио</h3>
-	                <p>Отзывчивое личное портфолио, демонстрирующее мои навыки и проекты. Создано с использованием HTML, CSS и JavaScript.</p>
-	                <a href="/">Собственно, это и есть эта страница</a>
-	                <a href="https://github.com/1t1sCooL/portfolio" target="_blank">Посмотреть код</a>
-	            </div>
-	            <!-- <div class="project">
+  <head>
+    <meta charset="utf-8" />
+    <title>Алабугин Михаил</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="icon" type="image/png" href="./logo.png" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Expires" content="0" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Алабугин Михаил</h1>
+        <p>Software Developer</p>
+        <p>Создание интерактивных и удобных пользовательских интерфейсов</p>
+      </div>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#skills">Стек</a></li>
+        <li><a href="#projects">Проекты</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section id="about">
+        <h2>Обо мне</h2>
+        <p>
+          Привет! Меня зовут Алабугин Михаил, я увлеченный разработчик с
+          5-летним опытом создания динамичных, отзывчивых и доступных
+          пользовательских приложений. Мне нравится работать с современными
+          технологиями для создания удобного взаимодействия с пользователем.
+        </p>
+      </section>
+      <section id="skills">
+        <h2>Мой Стек</h2>
+        <div class="skills-lists">
+          <ul>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>SCSS/SASS</li>
+            <li>Bootstrap</li>
+            <li>TailwindCSS</li>
+            <li>Cross-Browser <br />Compatibility</li>
+            <li>Styled Components</li>
+            <li>Responsive Design</li>
+            <li>UI/UX Design</li>
+            <!-- <li>Figma</li> -->
+          </ul>
+          <ul>
+            <li>JavaScript (ES6+)</li>
+            <li>TypeScript</li>
+            <li>NodeJS</li>
+            <li>React</li>
+            <li>NextJS</li>
+            <li>Axios</li>
+            <li>MongoDB</li>
+            <li>React Router</li>
+            <li>AJAX</li>
+          </ul>
+          <ul>
+            <li>Git</li>
+            <li>GitHub</li>
+            <li>Redux</li>
+            <li>Docker</li>
+
+            <li>Redux Toolkit</li>
+            <li>Webpack</li>
+            <li>Vite</li>
+            <li>Cypress</li>
+            <li>Jest</li>
+          </ul>
+        </div>
+      </section>
+      <section id="projects">
+        <h2>Проекты</h2>
+        <div class="project">
+          <h3>День на Земле</h3>
+          <p>
+            Простая страница, которая позволяет узнать сколько дней вы на земле.
+            А также часов и минут, если вы точно знаете, когда родились. Проект
+            сделан на React, Redax, CSS, Vite с использованием условного
+            рендеринга для динамического обновления данных.
+          </p>
+          <a href="https://mmalabugin.ru/DayOnEarth">Day on Earth</a>
+          <a href="https://github.com/1t1sCooL/DayOnEarth" target="_blank"
+            >Посмотреть код</a
+          >
+        </div>
+        <div class="project">
+          <h3>Modal</h3>
+          <p>
+            Модальное окно, реализованное на React. Проект сделан на React,
+            UseState, SCSS/SASS, Vite с использованием условного рендеринга.
+          </p>
+          <a href="https://mmalabugin.ru/react-modal">Modal</a>
+          <a href="https://github.com/1t1sCooL/react-modal" target="_blank"
+            >Посмотреть код</a
+          >
+        </div>
+        <div class="project">
+          <h3>Counter</h3>
+          <p>
+            Визуально приятный счетчик, сделанный по технологии React. В проекте
+            используется React, UseState, SCSS/SCSS, Vite.
+          </p>
+          <a href="https://mmalabugin.ru/react-counter">Counter</a>
+          <a href="https://github.com/1t1sCooL/react-counter" target="_blank"
+            >Посмотреть код</a
+          >
+        </div>
+        <div class="project">
+          <h3>Сайт-портфолио</h3>
+          <p>
+            Отзывчивое личное портфолио, демонстрирующее мои навыки и проекты.
+            Создано с использованием HTML, CSS и JavaScript.
+          </p>
+          <a href="/">Собственно, это и есть эта страница</a>
+          <a href="https://github.com/1t1sCooL/portfolio" target="_blank"
+            >Посмотреть код</a
+          >
+        </div>
+        <!-- <div class="project">
 	                <h3>Task Manager App</h3>
 	                <p>A web app for managing tasks and deadlines. Created using React and Firebase for real-time updates.</p>
 	                <a href="https://github.com/yourusername/task-manager" target="_blank">View Code</a>
 	            </div> -->
-	        </section>
-	        <section id="contact">
-	            <h2>Контакты</h2>
-	            <p>Если есть желание посотрудничать или просто сказать "Привет!", то не стесняйтесь</p>
-	            <ul>
-	                <li>Email: mmalabugin@gmail.com</li>
-	                <li>Telegram: <a href="https://t.me/ItIsCooL" target="_blank">t.me/ItIsCooL</a></li>
-	                <li>GitHub: <a href="https://github.com/1t1sCooL" target="_blank">github.com/1t1sCooL</a></li>
-	                <li>vk.com: <a href="https://vk.com/1t1scool">Misha CooL</a></li>
-	            </ul>
-	        </section>	
-		</main>
-		<footer>
-			<p>&copy; 2025 Mikhail Alabugin. All rights reserved.</p>
-		</footer>
-	</body>
+      </section>
+      <section id="contact">
+        <h2>Контакты</h2>
+        <p>
+          Если есть желание посотрудничать или просто сказать "Привет!", то не
+          стесняйтесь
+        </p>
+        <ul>
+          <li>Email: mmalabugin@gmail.com</li>
+          <li>
+            Telegram:
+            <a href="https://t.me/ItIsCooL" target="_blank">t.me/ItIsCooL</a>
+          </li>
+          <li>
+            GitHub:
+            <a href="https://github.com/1t1sCooL" target="_blank"
+              >github.com/1t1sCooL</a
+            >
+          </li>
+          <li>vk.com: <a href="https://vk.com/1t1scool">Misha CooL</a></li>
+        </ul>
+      </section>
+    </main>
+    <footer>
+      <p>&copy; 2025 Mikhail Alabugin. All rights reserved.</p>
+    </footer>
+  </body>
 </html>
