@@ -19,14 +19,24 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh """
-                    echo "🐳 Building Docker image for static site..."
+                    echo "🐳 Building Docker image..."
 
                     docker build \\
                         -t ${FULL_IMAGE} \\
                         -t ${REGISTRY}/${IMAGE_NAME}:latest \\
                         .
 
-                    docker push ${FULL_IMAGE} || echo "⚠️ Local registry not available, using local image"
+                    docker push ${FULL_IMAGE} || true
+                """
+            }
+        }
+
+        stage('Update image in manifests') {
+            steps {
+                sh """
+                    echo "📝 Updating image in kubernetes manifests..."
+
+                    sed -i "s|image: .*main-page.*|image: ${FULL_IMAGE}|g" kubernetes/deployment.yaml
                 """
             }
         }
@@ -34,55 +44,10 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 sh """
-                    echo "🚀 Deploying static site to Kubernetes..."
+                    echo "🚀 Applying kubernetes manifests..."
 
-                    kubectl apply -f - <<EOF
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: main-page
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: main-page
-  template:
-    metadata:
-      labels:
-        app: main-page
-    spec:
-      containers:
-        - name: nginx
-          image: ${FULL_IMAGE}
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: main-page
-spec:
-  selector:
-    app: main-page
-  ports:
-    - port: 80
-      targetPort: 80
-EOF
+                    kubectl apply -f kubernetes/
                 """
-            }
-        }
-
-        stage('Ingress (optional)') {
-            steps {
-                script {
-                    if (fileExists('kubernetes/ingress.yaml')) {
-                        echo "🌍 Applying Ingress from repository"
-                        sh 'kubectl apply -f kubernetes/ingress.yaml'
-                    } else {
-                        echo "ℹ️ No ingress.yaml found. Skipping external exposure."
-                    }
-                }
             }
         }
     }
