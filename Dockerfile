@@ -3,10 +3,10 @@ FROM nginx:alpine
 # Удаляем дефолтный конфиг
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Кладём НАСТОЯЩИЙ nginx-конфиг
+# Кладем правильный конфиг
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Кладём ТОЛЬКО статику
+# Кладем ТОЛЬКО статику
 COPY index.html /usr/share/nginx/html/
 COPY style.css /usr/share/nginx/html/
 COPY logo.png /usr/share/nginx/html/
