@@ -46,7 +46,7 @@ pipeline {
                 sh """
                     echo "🚀 Applying kubernetes manifests..."
 
-                    kubectl apply -f kubernetes/
+                    kubectl apply -k kubernetes/
                 """
             }
         }
