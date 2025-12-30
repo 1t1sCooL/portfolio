@@ -4,10 +4,9 @@ metadata:
   name: main-page
   namespace: default
   annotations:
-    # Оставляем только редирект
+    # Теперь это правило будет работать, так как мы создали его выше
     traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
 spec:
-  # Явно указываем класс (в k3s для Traefik это часто помогает)
   ingressClassName: traefik
   rules:
     - host: mmalabugin.ru
@@ -17,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: main-page # Убедитесь, что сервис называется именно так
+                name: main-page
                 port:
                   number: 80
   tls:
