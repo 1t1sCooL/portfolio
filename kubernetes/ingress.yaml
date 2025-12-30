@@ -4,11 +4,12 @@ metadata:
   name: main-page
   namespace: default
   annotations:
-    # Traefik использует стандартные правила,
-    # специфичные аннотации Nginx ему не нужны.
+    # 1. Говорим, что этот ингресс слушает обе точки
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+    # 2. Включаем автоматический редирект только для HTTP
+    traefik.ingress.kubernetes.io/router.tls: "true"
 spec:
-  # Удаляем или меняем class на traefik (в k3s по умолчанию можно вообще убрать)
+  ingressClassName: traefik
   rules:
     - host: mmalabugin.ru
       http:
