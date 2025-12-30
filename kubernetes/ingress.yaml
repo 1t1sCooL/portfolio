@@ -4,7 +4,7 @@ metadata:
   name: main-page
   namespace: default
   annotations:
-    # Теперь это правило будет работать, так как мы создали его выше
+    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
     traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
 spec:
   ingressClassName: traefik
