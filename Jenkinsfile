@@ -7,6 +7,7 @@ pipeline {
         IMAGE_TAG = "${BUILD_NUMBER}"
         FULL_IMAGE = "${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
         DOCKER_HUB_CREDS = 'dockerhub'
+        LATEST_IMAGE = "${DOCKER_USER}/${IMAGE_NAME}:latest"
     }
 
     stages {
