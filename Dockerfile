@@ -1,12 +1,9 @@
 FROM nginx:alpine
 
-# Удаляем дефолтный конфиг
 RUN rm /etc/nginx/conf.d/default.conf
 
-# Кладем правильный конфиг
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Кладем ТОЛЬКО статику
 COPY index.html /usr/share/nginx/html/
 COPY style.css /usr/share/nginx/html/
 COPY logo.png /usr/share/nginx/html/
