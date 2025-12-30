@@ -4,10 +4,9 @@ metadata:
   name: main-page
   namespace: default
   annotations:
-    # Явно говорим, что этот Ingress для Traefik
+    # Явно указываем класс
     kubernetes.io/ingress.class: "traefik"
-    # Подключаем наш редирект (мы его создали в default)
-    traefik.ingress.kubernetes.io/router.middlewares: default-force-https@kubernetescrd
+    # Убираем пока Middleware, чтобы не было циклов редиректа
 spec:
   rules:
     - host: mmalabugin.ru
@@ -20,7 +19,3 @@ spec:
                 name: main-page
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - mmalabugin.ru
-      secretName: main-page-tls
