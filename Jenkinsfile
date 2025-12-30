@@ -2,14 +2,10 @@ pipeline {
     agent any
 
     environment {
-        // 1. Замените 'ВАШ_ЛОГИН' на ваш реальный логин Docker Hub
         DOCKER_HUB_USER = '1t1scool' 
         IMAGE_NAME = 'main-page'
         IMAGE_TAG = "${BUILD_NUMBER}"
-        // Полный путь теперь выглядит как: mmalabugin/main-page:1
         FULL_IMAGE = "${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
-        
-        // ID учетных данных, которые вы создали в интерфейсе Jenkins
         DOCKER_HUB_CREDS = 'dockerhub'
     }
 
@@ -22,7 +18,6 @@ pipeline {
 
         stage('Build & Login & Push') {
             steps {
-                // Используем credentials для безопасной авторизации
                 withCredentials([usernamePassword(credentialsId: "${DOCKER_HUB_CREDS}", 
                                  usernameVariable: 'USER', 
                                  passwordVariable: 'PASS')]) {
@@ -64,7 +59,7 @@ pipeline {
     
     post {
         always {
-            sh "docker logout" // На всякий случай выходим из системы после билда
+            sh "docker logout" 
         }
     }
 }
