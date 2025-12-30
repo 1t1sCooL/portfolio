@@ -19,3 +19,7 @@ spec:
                 name: main-page
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - mmalabugin.ru
+      secretName: main-page-tls
