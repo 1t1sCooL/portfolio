@@ -4,12 +4,11 @@ metadata:
   name: main-page
   namespace: default
   annotations:
-    # Traefik использует стандартные правила,
-    # специфичные аннотации Nginx ему не нужны.
-    traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+    # Оставляем только редирект
     traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
 spec:
-  # Удаляем или меняем class на traefik (в k3s по умолчанию можно вообще убрать)
+  # Явно указываем класс (в k3s для Traefik это часто помогает)
+  ingressClassName: traefik
   rules:
     - host: mmalabugin.ru
       http:
@@ -18,7 +17,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: main-page
+                name: main-page # Убедитесь, что сервис называется именно так
                 port:
                   number: 80
   tls:
