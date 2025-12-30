@@ -4,10 +4,10 @@ metadata:
   name: main-page
   namespace: default
   annotations:
-    # 1. Говорим, что этот ингресс слушает обе точки
+    # 1. Указываем Traefik не мудрить и просто слать трафик на 80 порт
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
-    # 2. Включаем автоматический редирект только для HTTP
-    traefik.ingress.kubernetes.io/router.tls: "true"
+    # 2. Используем Middleware, который мы создали (force-https)
+    traefik.ingress.kubernetes.io/router.middlewares: default-force-https@kubernetescrd
 spec:
   ingressClassName: traefik
   rules:
