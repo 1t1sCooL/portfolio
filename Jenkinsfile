@@ -60,6 +60,7 @@ pipeline {
     post {
         always {
             sh "docker logout" 
+            sh "docker rmi ${FULL_IMAGE} ${LATEST_IMAGE} || true"
         }
     }
 }
