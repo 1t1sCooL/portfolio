@@ -7,6 +7,7 @@ metadata:
     # Traefik использует стандартные правила,
     # специфичные аннотации Nginx ему не нужны.
     traefik.ingress.kubernetes.io/router.entrypoints: web, websecure
+    traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
 spec:
   # Удаляем или меняем class на traefik (в k3s по умолчанию можно вообще убрать)
   rules:
