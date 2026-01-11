@@ -1,0 +1,24 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%; // Чтобы карточки в одном ряду были одинаковой высоты
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9; // Самый современный способ задать пропорции
+  overflow: hidden;
+}
+.card {
+  background: rgba(255, 255, 255, 0.03); // Едва заметное осветление
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color 0.3s ease;
+
+  &:hover {
+    border-color: var(--accent-color);
+    background: rgba(255, 255, 255, 0.05);
+  }
+}

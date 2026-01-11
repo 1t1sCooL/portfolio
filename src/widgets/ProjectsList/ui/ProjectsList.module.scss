@@ -1,0 +1,14 @@
+.section {
+  padding: 100px 20px;
+  max-width: 1200px; // Ограничиваем ширину контента
+  margin: 0 auto; // Центрируем по горизонтали
+  min-height: auto; // Убедись, что нет height: 100vh
+}
+
+.grid {
+  display: grid;
+  // Сетка, которая делает колонки по 350px, но не шире экрана
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
