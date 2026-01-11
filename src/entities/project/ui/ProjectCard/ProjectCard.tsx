@@ -11,8 +11,6 @@ interface ProjectProps {
   github: string;
 }
 
-// src/entities/project/ui/ProjectCard/ProjectCard.tsx
-
 export const ProjectCard = ({
   title,
   description,
@@ -21,10 +19,7 @@ export const ProjectCard = ({
   link,
   github,
 }: ProjectProps) => (
-  <motion.article
-    className={styles.card}
-    // ... animation props
-  >
+  <motion.article className={styles.card}>
     <div className={styles.imageWrapper}>
       <Image
         src={image}
@@ -33,7 +28,6 @@ export const ProjectCard = ({
         className={styles.img}
         sizes="(max-width: 768px) 100vw, 33vw"
       />
-      {/* Слой overlay должен быть ПОСЛЕ Image, чтобы быть выше по Z-индексу */}
       <div className={styles.overlay}>
         <div className={styles.links}>
           <a href={github} target="_blank" rel="noreferrer">
@@ -52,7 +46,6 @@ export const ProjectCard = ({
         <p>{description}</p>
       </div>
 
-      {/* Этот блок всегда будет прижат к низу */}
       <div className={styles.stack}>
         {stack.map((tech) => (
           <span key={tech}>{tech}</span>

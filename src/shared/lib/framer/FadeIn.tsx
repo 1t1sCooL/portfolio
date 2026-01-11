@@ -14,7 +14,7 @@ export const FadeIn = ({ children, delay = 0, ...props }: FadeInProps) => (
     transition={{
       duration: 0.6,
       delay,
-      ease: [0.16, 1, 0.3, 1], // Плавный "дорогой" выезд
+      ease: [0.16, 1, 0.3, 1],
     }}
     {...props}
   >

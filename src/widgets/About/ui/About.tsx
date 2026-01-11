@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FadeIn } from "@/shared/lib/framer"; // Используем обертку, которую создали раньше
+import { FadeIn } from "@/shared/lib/framer";
 import styles from "./About.module.scss";
 
 const skills = [

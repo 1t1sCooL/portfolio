@@ -1,7 +1,7 @@
 .card {
   display: flex;
-  flex-direction: column; // Карточка — это колонка
-  height: 100%; // Важно для выравнивания в сетке
+  flex-direction: column;
+  height: 100%;
   background: rgba(255, 255, 255, 0.03);
   border-radius: 20px;
   overflow: hidden;
@@ -16,27 +16,25 @@
 .info {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; // Заставляет блок info занять всё свободное место
+  flex-grow: 1;
   padding: 25px;
 }
 
 .mainContent {
-  // Контент (заголовок + текст) остается наверху
   margin-bottom: 20px;
 }
 
 .stack {
-  margin-top: auto; // МАГИЯ: отталкивает этот блок максимально вниз
+  margin-top: auto;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding-top: 15px; // Небольшой отступ от текста
-  border-top: 1px solid rgba(255, 255, 255, 0.05); // Опционально: тонкая линия разделения
-
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
   span {
     font-size: 0.75rem;
     padding: 4px 10px;
-    background: rgba(var(--accent-rgb), 0.1); // Используем твой акцентный цвет
+    background: rgba(var(--accent-rgb), 0.1);
     border-radius: 6px;
     color: var(--accent-color);
   }
@@ -44,37 +42,35 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9; // Фиксируем пропорции 16:9
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   background: #1a1a1a;
 
   .img {
-    object-fit: cover; // Картинка заполняет область, не искажаясь
+    object-fit: cover;
     z-index: 1;
     transition: transform 0.5s ease;
   }
 
   &:hover .img {
-    transform: scale(1.1); // Легкий зум при наведении
+    transform: scale(1.1);
   }
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  z-index: 2; // Гарантируем, что ссылки выше картинки
-  background: rgba(0, 0, 0, 0.7); // Темный фон при наведении
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
 
-  // Изначально скрываем
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
 }
 
-// Показываем overlay только при наведении на ВСЮ карточку
 .card:hover {
   .overlay {
     opacity: 1;

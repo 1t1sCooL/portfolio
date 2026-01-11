@@ -7,7 +7,6 @@ $transition-base: 0.3s ease;
 
 $tablet: 768px;
 $desktop: 1024px;
-// src/app/styles/abstracts/_vars.scss
 $accent: #3b82f6;
 $bg: #0a0a0a;
 $text-secondary: #94a3b8;
@@ -15,13 +14,13 @@ $tablet: 768px;
 $transition-base: 0.3s ease;
 
 :root {
-  --bg-rgb: 10, 10, 10; // RGB компоненты твоего $bg для rgba
+  --bg-rgb: 10, 10, 10;
   --accent-color: #{$accent};
   --text-secondary: #{$text-secondary};
 }
-$bg-color: #050505; // Глубокий черный/антрацит
-$text-primary: #ffffff; // Основной текст
-$text-secondary: #94a3b8; // Вспомогательный текст (серый)
+$bg-color: #050505;
+$text-primary: #ffffff;
+$text-secondary: #94a3b8;
 $accent: #3b82f6;
 
 :root {
@@ -30,6 +29,5 @@ $accent: #3b82f6;
   --text-secondary: #{$text-secondary};
   --accent-color: #{$accent};
 
-  // Для эффектов стекла и rgba
   --bg-rgb: 5, 5, 5;
 }
