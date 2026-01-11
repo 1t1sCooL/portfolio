@@ -1,4 +1,4 @@
-export const STACK_CATEGORIES = [
+export const STACK_DATA = [
   {
     category: "Frontend Development",
     skills: [

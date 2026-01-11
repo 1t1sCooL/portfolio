@@ -7,8 +7,10 @@
 
 .grid {
   display: grid;
-  // Сетка, которая делает колонки по 350px, но не шире экрана
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  // Сетка с автоматическим заполнением
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
-  margin-top: 50px;
+
+  // Это гарантирует, что все карточки в одном ряду будут иметь высоту самой высокой
+  align-items: stretch;
 }

@@ -1,26 +1,19 @@
 "use client";
-import { motion } from "framer-motion";
 import { ProjectCard } from "@/entities/project";
+import { PROJECTS } from "@/shared/constants/projects";
 import styles from "./ProjectsList.module.scss";
 
-const projects = [
-  {
-    title: "День на Земле",
-    description: "Сколько дней вы прожили?",
-    image: "/next.sv", // Используй реальный файл из папки public или заглушку
-    tags: ["React", "Vite", "SCSS"],
-  },
-];
-
-export const ProjectsList = () => (
-  <section className={styles.section} id="projects">
-    <motion.h2 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}>
-      Мои Проекты
-    </motion.h2>
-    <div className={styles.grid}>
-      {projects.map((p) => (
-        <ProjectCard key={p.title} {...p} />
-      ))}
-    </div>
-  </section>
-);
+export const ProjectsList = () => {
+  return (
+    <section className={styles.section} id="projects">
+      <div className={styles.container}>
+        <h2 className={styles.title}>Избранные Проекты</h2>
+        <div className={styles.grid}>
+          {PROJECTS.map((project) => (
+            <ProjectCard key={project.id} {...project} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
