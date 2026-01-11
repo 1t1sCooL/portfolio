@@ -1,0 +1,23 @@
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  /* Сглаживание шрифтов для лучшей читаемости */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+/* Глобальная настройка для заголовков */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* Автоматическая настройка выбора текста */
+::selection {
+  background-color: var(--accent-color);
+  color: white;
+}
