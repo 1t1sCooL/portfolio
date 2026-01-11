@@ -1,16 +1,14 @@
 .section {
   padding: 100px 20px;
-  max-width: 1200px; // Ограничиваем ширину контента
-  margin: 0 auto; // Центрируем по горизонтали
-  min-height: auto; // Убедись, что нет height: 100vh
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: auto;
 }
 
 .grid {
   display: grid;
-  // Сетка с автоматическим заполнением
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
 
-  // Это гарантирует, что все карточки в одном ряду будут иметь высоту самой высокой
   align-items: stretch;
 }
