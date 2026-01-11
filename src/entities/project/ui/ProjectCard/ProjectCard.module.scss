@@ -1,24 +1,105 @@
 .card {
   display: flex;
-  flex-direction: column;
-  height: 100%; // Чтобы карточки в одном ряду были одинаковой высоты
+  flex-direction: column; // Карточка — это колонка
+  height: 100%; // Важно для выравнивания в сетке
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+  }
 }
 
+.info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; // Заставляет блок info занять всё свободное место
+  padding: 25px;
+}
+
+.mainContent {
+  // Контент (заголовок + текст) остается наверху
+  margin-bottom: 20px;
+}
+
+.stack {
+  margin-top: auto; // МАГИЯ: отталкивает этот блок максимально вниз
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 15px; // Небольшой отступ от текста
+  border-top: 1px solid rgba(255, 255, 255, 0.05); // Опционально: тонкая линия разделения
+
+  span {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: rgba(var(--accent-rgb), 0.1); // Используем твой акцентный цвет
+    border-radius: 6px;
+    color: var(--accent-color);
+  }
+}
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9; // Самый современный способ задать пропорции
+  aspect-ratio: 16 / 9; // Фиксируем пропорции 16:9
   overflow: hidden;
-}
-.card {
-  background: rgba(255, 255, 255, 0.03); // Едва заметное осветление
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 24px;
-  transition: border-color 0.3s ease;
+  background: #1a1a1a;
 
-  &:hover {
-    border-color: var(--accent-color);
-    background: rgba(255, 255, 255, 0.05);
+  .img {
+    object-fit: cover; // Картинка заполняет область, не искажаясь
+    z-index: 1;
+    transition: transform 0.5s ease;
+  }
+
+  &:hover .img {
+    transform: scale(1.1); // Легкий зум при наведении
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2; // Гарантируем, что ссылки выше картинки
+  background: rgba(0, 0, 0, 0.7); // Темный фон при наведении
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Изначально скрываем
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+// Показываем overlay только при наведении на ВСЮ карточку
+.card:hover {
+  .overlay {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.links {
+  display: flex;
+  gap: 12px;
+
+  a {
+    z-index: 3;
+    padding: 10px 18px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
   }
 }
