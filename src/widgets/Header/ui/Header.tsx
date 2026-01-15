@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import styles from "./Header.module.scss";
+import { Shuffle } from "@/shared/ui/Shuffle/Shuffle";
+import { GlitchText } from "@/shared/ui/GlitchText/GlitchText";
+import { FuzzyText } from "@/shared/ui/FuzzyText/FuzzyText";
 
 const navLinks = [
   { name: "Обо мне", href: "#about" },
@@ -21,21 +24,32 @@ export const Header = () => {
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <nav className={styles.container}>
-        <div className={styles.logo}>M.A.</div>
+        <FuzzyText
+          fontSize={"2rem"}
+          baseIntensity={0.1}
+          glitchMode={true}
+          glitchInterval={7000}
+          glitchDuration={300}
+        >
+          Mikhail Alabugin
+        </FuzzyText>
 
         <ul className={styles.nav}>
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a href={link.href}>{link.name}</a>
+              <a href={link.href}>
+                <FuzzyText
+                  fontSize={"1rem"}
+                  baseIntensity={0.05}
+                  hoverIntensity={0.2}
+                  clickEffect={true}
+                >
+                  {link.name}
+                </FuzzyText>
+              </a>
             </li>
           ))}
         </ul>
-
-        <div className={styles.actions}>
-          <a href="#contact" className={styles.cta}>
-            Обсудить проект
-          </a>
-        </div>
       </nav>
     </header>
   );
