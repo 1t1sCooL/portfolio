@@ -25,8 +25,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 1200px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
-
+.shortName {
+  display: none;
+  @media (max-width: 570px) {
+    display: initial;
+  }
+}
+.fullName {
+  @media (max-width: 570px) {
+    display: none;
+  }
+}
 .logo {
   font-weight: 800;
   font-size: 2rem;
@@ -36,7 +50,7 @@
 
 .nav {
   display: flex;
-  gap: 32px;
+  gap: 0px;
   list-style: none;
   margin: 0;
   padding: 0;

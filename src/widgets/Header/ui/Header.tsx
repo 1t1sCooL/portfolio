@@ -30,8 +30,29 @@ export const Header = () => {
           glitchMode={true}
           glitchInterval={7000}
           glitchDuration={300}
+          className={styles.fullName}
         >
           Mikhail Alabugin
+        </FuzzyText>
+        <FuzzyText
+          fontSize={"2rem"}
+          baseIntensity={0.1}
+          glitchMode={true}
+          glitchInterval={7000}
+          glitchDuration={300}
+          className={styles.shortName}
+        >
+          Mikhail
+        </FuzzyText>
+        <FuzzyText
+          fontSize={"2rem"}
+          baseIntensity={0.1}
+          glitchMode={true}
+          glitchInterval={7000}
+          glitchDuration={300}
+          className={styles.shortName}
+        >
+          Alabugin
         </FuzzyText>
 
         <ul className={styles.nav}>
