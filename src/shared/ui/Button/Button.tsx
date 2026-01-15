@@ -1,19 +1,20 @@
-import styles from "./Button.module.scss";
+import { ButtonHTMLAttributes, ReactNode } from "react";
 
-interface Props {
-  children: React.ReactNode;
-  href?: string;
-  variant?: "primary" | "outline";
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children: ReactNode;
+  variant?: "primary" | "secondary" | "outline";
+  className?: string;
 }
 
-export const Button = ({ children, href, variant = "primary" }: Props) => {
-  const className = `${styles.btn} ${styles[variant]}`;
-
-  if (href)
-    return (
-      <a href={href} className={className}>
-        {children}
-      </a>
-    );
-  return <button className={className}>{children}</button>;
+export const Button = ({
+  children,
+  variant = "primary",
+  className = "",
+  ...props
+}: ButtonProps) => {
+  return (
+    <button className={`btn ${variant} ${className}`} {...props}>
+      {children}
+    </button>
+  );
 };
