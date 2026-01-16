@@ -7,27 +7,18 @@ $transition-base: 0.3s ease;
 
 $tablet: 768px;
 $desktop: 1024px;
-$accent: #3b82f6;
-$bg: #0a0a0a;
+$bg-color: #0a0a0a;
+$text-primary: #ededed;
 $text-secondary: #94a3b8;
-$tablet: 768px;
+$accent-color: #3b82f6;
+$card-bg: #111827;
 $transition-base: 0.3s ease;
-
-:root {
-  --bg-rgb: 10, 10, 10;
-  --accent-color: #{$accent};
-  --text-secondary: #{$text-secondary};
-}
-$bg-color: #050505;
-$text-primary: #ffffff;
-$text-secondary: #94a3b8;
-$accent: #3b82f6;
 
 :root {
   --bg-color: #{$bg-color};
   --text-primary: #{$text-primary};
   --text-secondary: #{$text-secondary};
-  --accent-color: #{$accent};
-
-  --bg-rgb: 5, 5, 5;
+  --accent-color: #{$accent-color};
+  --card-bg: #{$card-bg};
+  --bg-rgb: 10, 10, 10;
 }

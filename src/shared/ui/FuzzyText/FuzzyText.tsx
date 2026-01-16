@@ -20,6 +20,8 @@ interface FuzzyTextProps {
   gradient?: string[] | null;
   letterSpacing?: number;
   className?: string;
+  performanceMode?: boolean; // New prop to disable animations for performance
+  hideAccessibilityText?: boolean; // New prop to hide accessibility text for visual-only elements
 }
 
 export const FuzzyText: React.FC<FuzzyTextProps> = ({
@@ -42,6 +44,8 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
   gradient = null,
   letterSpacing = 0,
   className = "",
+  performanceMode = false,
+  hideAccessibilityText = false,
 }) => {
   const canvasRef = useRef<
     HTMLCanvasElement & { cleanupFuzzyText?: () => void }
@@ -59,6 +63,32 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
     const init = async () => {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
+
+      // Performance mode: render static text without animations
+      if (performanceMode) {
+        ctx.font = `${fontWeight} ${
+          typeof fontSize === "number" ? `${fontSize}px` : fontSize
+        } ${
+          fontFamily === "inherit"
+            ? window.getComputedStyle(canvas).fontFamily || "sans-serif"
+            : fontFamily
+        }`;
+        ctx.fillStyle = color;
+        ctx.textBaseline = "alphabetic";
+        const text = React.Children.toArray(children).join("");
+        const metrics = ctx.measureText(text);
+        canvas.width = Math.ceil(metrics.width) + 20;
+        canvas.height =
+          Math.ceil(
+            typeof fontSize === "number" ? fontSize : parseFloat(fontSize)
+          ) + 10;
+        ctx.fillText(
+          text,
+          10,
+          typeof fontSize === "number" ? fontSize : parseFloat(fontSize)
+        );
+        return;
+      }
 
       const computedFontFamily =
         fontFamily === "inherit"
@@ -363,7 +393,28 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
     glitchDuration,
     gradient,
     letterSpacing,
+    performanceMode,
+    hideAccessibilityText,
   ]);
 
-  return <canvas ref={canvasRef} className={className} />;
+  return (
+    <>
+      <canvas ref={canvasRef} className={className} aria-hidden="true" />
+      {!hideAccessibilityText && (
+        <span
+          style={{
+            position: "absolute",
+            left: "-10000px",
+            top: "auto",
+            width: "1px",
+            height: "1px",
+            overflow: "hidden",
+          }}
+          aria-live="polite"
+        >
+          {React.Children.toArray(children).join("")}
+        </span>
+      )}
+    </>
+  );
 };

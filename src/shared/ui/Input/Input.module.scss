@@ -6,7 +6,7 @@
 
   label {
     font-size: 0.9rem;
-    color: v.$text-secondary;
+    color: var(--text-secondary);
   }
 
   input,
@@ -15,12 +15,12 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px;
     border-radius: 8px;
-    color: v.$text;
-    transition: border-color v.$transition-base;
+    color: var(--text-primary);
+    transition: border-color var(--transition-base);
 
     &:focus {
       outline: none;
-      border-color: v.$accent;
+      border-color: var(--accent-color);
     }
   }
 }
