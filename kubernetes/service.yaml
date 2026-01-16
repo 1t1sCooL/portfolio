@@ -5,8 +5,9 @@ metadata:
   namespace: default
 spec:
   selector:
-    app: main-page-app
+    app: main-page-app # Должно совпадать с labels в Deployment
   ports:
-    - port: 80
-      targetPort: 80
+    - protocol: TCP
+      port: 80 # Порт, по которому к сервису обращаются внутри кластера (и Ingress)
+      targetPort: 3000 # Порт самого приложения Next.js внутри контейнера
   type: ClusterIP
