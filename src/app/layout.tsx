@@ -31,8 +31,12 @@ export const metadata: Metadata = {
         alt: "Превью портфолио Михаила Алабугина",
       },
     ],
+
     locale: "ru_RU",
     type: "website",
+  },
+  other: {
+    "mailru-domain": "RiJeoRizDBJkgcXR",
   },
 };
 
