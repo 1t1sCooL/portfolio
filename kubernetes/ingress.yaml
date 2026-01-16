@@ -5,14 +5,14 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: "traefik"
-    traefik.ingress.kubernetes.io/router.priority: "10"
 spec:
+  ingressClassName: traefik
   rules:
     - host: mmalabugin.ru
       http:
         paths:
           - path: /
-            pathType: ImplementationSpecific
+            pathType: Prefix
             backend:
               service:
                 name: main-page
