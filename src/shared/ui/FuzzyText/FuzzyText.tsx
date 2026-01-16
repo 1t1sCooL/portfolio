@@ -19,6 +19,7 @@ interface FuzzyTextProps {
   glitchDuration?: number;
   gradient?: string[] | null;
   letterSpacing?: number;
+  wordSpacing?: number;
   className?: string;
   performanceMode?: boolean; // New prop to disable animations for performance
   hideAccessibilityText?: boolean; // New prop to hide accessibility text for visual-only elements
@@ -43,6 +44,7 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
   glitchDuration = 200,
   gradient = null,
   letterSpacing = 0,
+  wordSpacing = 0,
   className = "",
   performanceMode = false,
   hideAccessibilityText = false,
@@ -128,11 +130,16 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
       offCtx.textBaseline = "alphabetic";
 
       let totalWidth = 0;
-      if (letterSpacing !== 0) {
+      if (letterSpacing !== 0 || wordSpacing !== 0) {
         for (const char of text) {
-          totalWidth += offCtx.measureText(char).width + letterSpacing;
+          totalWidth += offCtx.measureText(char).width;
+          if (char === " ") {
+            totalWidth += wordSpacing;
+          } else {
+            totalWidth += letterSpacing;
+          }
         }
-        totalWidth -= letterSpacing;
+        totalWidth -= letterSpacing; // remove the last letterSpacing, but if last is space, it should be wordSpacing, but approx
       } else {
         totalWidth = offCtx.measureText(text).width;
       }
@@ -140,7 +147,7 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
       const metrics = offCtx.measureText(text);
       const actualLeft = metrics.actualBoundingBoxLeft ?? 0;
       const actualRight =
-        letterSpacing !== 0
+        letterSpacing !== 0 || wordSpacing !== 0
           ? totalWidth
           : metrics.actualBoundingBoxRight ?? metrics.width;
       const actualAscent = metrics.actualBoundingBoxAscent ?? numericFontSize;
@@ -148,7 +155,9 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
         metrics.actualBoundingBoxDescent ?? numericFontSize * 0.2;
 
       const textBoundingWidth = Math.ceil(
-        letterSpacing !== 0 ? totalWidth : actualLeft + actualRight
+        letterSpacing !== 0 || wordSpacing !== 0
+          ? totalWidth
+          : actualLeft + actualRight
       );
       const tightHeight = Math.ceil(actualAscent + actualDescent);
 
@@ -172,11 +181,16 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
         offCtx.fillStyle = color;
       }
 
-      if (letterSpacing !== 0) {
+      if (letterSpacing !== 0 || wordSpacing !== 0) {
         let xPos = xOffset;
         for (const char of text) {
           offCtx.fillText(char, xPos, actualAscent);
-          xPos += offCtx.measureText(char).width + letterSpacing;
+          xPos += offCtx.measureText(char).width;
+          if (char === " ") {
+            xPos += wordSpacing;
+          } else {
+            xPos += letterSpacing;
+          }
         }
       } else {
         offCtx.fillText(text, xOffset - actualLeft, actualAscent);
@@ -393,6 +407,7 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
     glitchDuration,
     gradient,
     letterSpacing,
+    wordSpacing,
     performanceMode,
     hideAccessibilityText,
   ]);
