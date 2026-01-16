@@ -7,7 +7,7 @@ export const ProjectsList = () => {
   return (
     <section className={styles.section} id="projects">
       <div className={styles.container}>
-        <h2 className={styles.title}>Избранные Проекты</h2>
+        <h2 className={styles.title}>Проекты</h2>
         <div className={styles.grid}>
           {PROJECTS.map((project) => (
             <ProjectCard key={project.id} {...project} />
