@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
+import PixelBlast from "@/shared/ui/Background/Background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,22 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <PixelBlast
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: -1,
+          }}
+          pixelSize={1}
+          patternScale={1.75}
+          patternDensity={1.2}
+          liquid
+          speed={0.1}
+          edgeFade={0.1}
+        />
         <Header />
         {children}
         <Footer />
