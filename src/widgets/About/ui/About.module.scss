@@ -3,6 +3,12 @@
   background: var(--bg-color);
   font-family: "Press Start 2P", sans-serif;
   word-spacing: -5px;
+  @media (max-width: 768px) {
+    padding: 50px 0 20px;
+  }
+  @media (max-width: 570px) {
+    padding: 80px 0 20px;
+  }
 }
 
 .container {
@@ -12,9 +18,12 @@
   grid-template-columns: 1.7fr 1fr;
   gap: 80px;
   align-items: center;
-  @media (max-width: 768px) {
+  @media (max-width: 1300px) {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+  @media (max-width: 768px) {
+    padding: 1rem 20px;
   }
 }
 
@@ -33,18 +42,27 @@
   line-height: 1.1;
   margin: 12px 0 24px 0;
   word-spacing: -15px;
+  @media (max-width: 1300px) {
+    text-align: center;
+  }
+  @media (max-width: 424px) {
+    font-size: 1.3rem;
+  }
 }
 
 .text {
   color: var(--text-secondary);
   line-height: 1.7;
   font-size: 1.1rem;
-
+  text-align: center;
   p {
     margin-bottom: 20px;
   }
   strong {
     color: white;
+  }
+  @media (max-width: 424px) {
+    font-size: 0.9rem;
   }
 }
 
@@ -53,6 +71,9 @@
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 32px;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 }
 
 .skillTag {
