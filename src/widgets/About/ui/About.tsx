@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/shared/lib/framer";
+import DecryptedText from "@/shared/ui/DecryptedText/DecryptedText";
 import styles from "./About.module.scss";
 
 const skills = [
@@ -18,23 +19,29 @@ export const About = () => {
       <div className={styles.container}>
         <FadeIn>
           <div className={styles.content}>
-            <span className={styles.overline}>Кто я такой</span>
             <h2 className={styles.title}>
-              Превращаю сложные задачи в элегантный код
+              <DecryptedText
+                text="Превращаю сложные задачи в элегантный код"
+                animateOn="view"
+                speed={10}
+                maxIterations={4}
+                sequential
+              />
             </h2>
 
             <div className={styles.text}>
               <p>
-                Привет! Я <strong>Михаил</strong>, Software Developer с фокусом
-                на создании высокопроизводительных веб-приложений. Мой подход
-                базируется на архитектурной чистоте и удобстве для конечного
-                пользователя.
+                <DecryptedText
+                  text="Привет! Я Михаил, Software Developer с фокусом на создании высокопроизводительных веб-приложений. Мой подход базируется на архитектурной чистоте и удобстве для конечного пользователя."
+                  animateOn="view"
+                  speed={40}
+                />
               </p>
               <p>
-                В данный момент специализируюсь на экосистеме{" "}
-                <strong>React/Next.js</strong>и методологии{" "}
-                <strong>Feature-Sliced Design</strong>, что позволяет мне
-                строить масштабируемые проекты, которые легко поддерживать.
+                <DecryptedText
+                  text="В данный момент специализируюсь на экосистеме React/Next.js и методологии Feature-Sliced Design, что позволяет мне строить масштабируемые проекты, которые легко поддерживать."
+                  animateOn="view"
+                />
               </p>
             </div>
 
@@ -47,7 +54,13 @@ export const About = () => {
                   transition={{ delay: index * 0.1 }}
                   className={styles.skillTag}
                 >
-                  {skill}
+                  <DecryptedText
+                    text={skill}
+                    animateOn="view"
+                    sequential
+                    speed={80}
+                    maxIterations={10}
+                  />
                 </motion.span>
               ))}
             </div>
@@ -56,11 +69,25 @@ export const About = () => {
 
         <div className={styles.experience}>
           <div className={styles.statCard}>
-            <span className={styles.number}>5+</span>
+            <span className={styles.number}>
+              <DecryptedText
+                text={"6+"}
+                animateOn="view"
+                speed={80}
+                maxIterations={30}
+              />
+            </span>
             <span className={styles.label}>Лет опыта</span>
           </div>
           <div className={styles.statCard}>
-            <span className={styles.number}>20+</span>
+            <span className={styles.number}>
+              <DecryptedText
+                text={"30+"}
+                animateOn="view"
+                speed={90}
+                maxIterations={34}
+              />
+            </span>
             <span className={styles.label}>Проектов</span>
           </div>
         </div>
