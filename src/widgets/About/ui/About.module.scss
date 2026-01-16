@@ -1,16 +1,17 @@
 .section {
-  padding: 120px 20px;
+  padding: 120px 0 20px;
   background: var(--bg-color);
+  font-family: "Press Start 2P", sans-serif;
+  word-spacing: -5px;
 }
 
 .container {
   max-width: 100%;
-  margin: 0 50px;
+  padding: 1rem 82px;
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
+  grid-template-columns: 1.7fr 1fr;
   gap: 80px;
   align-items: center;
-
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -28,9 +29,10 @@
 }
 
 .title {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 1.7rem;
   line-height: 1.1;
-  margin-bottom: 24px;
+  margin: 12px 0 24px 0;
+  word-spacing: -15px;
 }
 
 .text {
@@ -64,20 +66,25 @@
 
 .experience {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
   gap: 20px;
 }
 
 .statCard {
-  background: var(--card-bg-color, #111827);
+  background: var(--card-bg-color);
   padding: 30px;
   border-radius: 20px;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   .number {
     display: block;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 800;
     color: var(--accent-color);
     margin-bottom: 4px;
@@ -85,6 +92,7 @@
 
   .label {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 1.4rem;
+    word-spacing: -15px;
   }
 }
