@@ -1,6 +1,6 @@
 .section {
   padding: 120px 20px;
-  background: v.$bg;
+  background: var(--bg-color);
 }
 
 .container {
@@ -11,7 +11,7 @@
   gap: 80px;
   align-items: center;
 
-  @media (max-width: v.$tablet) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 40px;
   }
@@ -87,13 +87,4 @@
     color: var(--text-secondary);
     font-size: 0.9rem;
   }
-}
-.title {
-  color: var(--text-primary);
-  font-weight: 700;
-}
-
-.description {
-  color: var(--text-secondary);
-  max-width: 60ch;
 }

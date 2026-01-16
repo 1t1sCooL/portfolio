@@ -31,6 +31,7 @@ export const Header = () => {
           glitchInterval={7000}
           glitchDuration={300}
           className={styles.fullName}
+          hideAccessibilityText={true}
         >
           Mikhail Alabugin
         </FuzzyText>
@@ -41,6 +42,7 @@ export const Header = () => {
           glitchInterval={7000}
           glitchDuration={300}
           className={styles.shortName}
+          hideAccessibilityText={true}
         >
           Mikhail
         </FuzzyText>
@@ -51,6 +53,7 @@ export const Header = () => {
           glitchInterval={7000}
           glitchDuration={300}
           className={styles.shortName}
+          hideAccessibilityText={true}
         >
           Alabugin
         </FuzzyText>
@@ -64,6 +67,7 @@ export const Header = () => {
                   baseIntensity={0.05}
                   hoverIntensity={0.2}
                   clickEffect={true}
+                  hideAccessibilityText={true}
                 >
                   {link.name}
                 </FuzzyText>

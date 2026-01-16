@@ -1,15 +1,20 @@
-import { Hero } from "@/widgets/Hero";
 import { ProjectsList } from "@/widgets/ProjectsList";
 import { About } from "@/widgets/About";
 import { Stack } from "@/widgets/Stack";
+import { ErrorBoundary } from "@/shared/ui/ErrorBoundary";
 
 export default function HomePage() {
   return (
     <main>
-      {/* <Hero /> */}
-      <About />
-      <Stack />
-      <ProjectsList />
+      <ErrorBoundary>
+        <About />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <Stack />
+      </ErrorBoundary>
+      <ErrorBoundary>
+        <ProjectsList />
+      </ErrorBoundary>
     </main>
   );
 }
