@@ -6,7 +6,6 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "traefik"
 spec:
-  ingressClassName: traefik
   rules:
     - host: mmalabugin.ru
       http:
