@@ -4,9 +4,7 @@ metadata:
   name: main-page
   namespace: default
   annotations:
-    # Явно указываем класс
     kubernetes.io/ingress.class: "traefik"
-    # Убираем пока Middleware, чтобы не было циклов редиректа
 spec:
   rules:
     - host: mmalabugin.ru
