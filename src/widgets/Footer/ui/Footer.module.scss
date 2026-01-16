@@ -1,0 +1,100 @@
+.footer {
+  padding: 30px 82px;
+  background-color: var(--bg-color);
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+  color: #fff;
+  font-family: "Press Start 2P", sans-serif;
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+  }
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+}
+
+.mainInfo {
+  max-width: 400px;
+
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 16px 0;
+  }
+
+  .text {
+    color: #888;
+    line-height: 1.6;
+  }
+  @media (max-width: 424px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.linksGrid {
+  align-self: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ccc;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    &:hover {
+      transform: translateY(-3px);
+    }
+  }
+  @media (max-width: 424px) {
+    font-size: 0.8rem;
+  }
+}
+
+.bottomBar {
+  font-family: "Press Start 2P", sans-serif;
+  text-align: center;
+  padding: 30px;
+  background-color: var(--bg-color);
+  p {
+    font-size: 1rem;
+    color: #ffffff;
+  }
+}

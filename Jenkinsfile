@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -7,7 +8,6 @@ pipeline {
         IMAGE_TAG = "${BUILD_NUMBER}"
         FULL_IMAGE = "${DOCKER_HUB_USER}/${IMAGE_NAME}:${IMAGE_TAG}"
         DOCKER_HUB_CREDS = 'dockerhub'
-        LATEST_IMAGE = "${DOCKER_USER}/${IMAGE_NAME}:latest"
     }
 
     stages {
@@ -61,7 +61,5 @@ pipeline {
     post {
         always {
             sh "docker logout" 
-            sh "docker rmi ${FULL_IMAGE} ${LATEST_IMAGE} || true"
         }
     }
-}

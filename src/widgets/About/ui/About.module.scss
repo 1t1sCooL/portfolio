@@ -1,0 +1,119 @@
+.section {
+  padding: 120px 0 20px;
+  background: var(--bg-color);
+  font-family: "Press Start 2P", sans-serif;
+  word-spacing: -5px;
+  @media (max-width: 768px) {
+    padding: 50px 0 20px;
+  }
+  @media (max-width: 570px) {
+    padding: 80px 0 20px;
+  }
+}
+
+.container {
+  max-width: 100%;
+  padding: 1rem 82px;
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 80px;
+  align-items: center;
+  @media (max-width: 1300px) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 768px) {
+    padding: 1rem 20px;
+  }
+}
+
+.overline {
+  color: var(--accent-color);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 1.7rem;
+  line-height: 1.1;
+  margin: 12px 0 24px 0;
+  word-spacing: -15px;
+  @media (max-width: 1300px) {
+    text-align: center;
+  }
+  @media (max-width: 424px) {
+    font-size: 1.3rem;
+  }
+}
+
+.text {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 1.1rem;
+  text-align: center;
+  p {
+    margin-bottom: 20px;
+  }
+  strong {
+    color: white;
+  }
+  @media (max-width: 424px) {
+    font-size: 0.9rem;
+  }
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+.skillTag {
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.experience {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+}
+
+.statCard {
+  background: var(--card-bg-color);
+  padding: 30px;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--accent-color);
+    margin-bottom: 4px;
+  }
+
+  .label {
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    word-spacing: -15px;
+  }
+}
