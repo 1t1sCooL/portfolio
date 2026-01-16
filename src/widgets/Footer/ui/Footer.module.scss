@@ -1,12 +1,17 @@
 .footer {
-  padding: 80px 0 40px;
-  background-color: #000;
-  border-top: 1px solid #1a1a1a;
+  padding: 30px 82px;
+  background-color: var(--bg-color);
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
   color: #fff;
+  font-family: "Press Start 2P", sans-serif;
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+  }
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
@@ -15,6 +20,7 @@
   gap: 40px;
 
   @media (max-width: 768px) {
+    padding: 0;
     flex-direction: column;
     text-align: center;
     align-items: center;
@@ -27,22 +33,29 @@
   .title {
     font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 16px;
+    margin: 16px 0;
   }
 
   .text {
     color: #888;
     line-height: 1.6;
   }
+  @media (max-width: 424px) {
+    .title {
+      font-size: 1.5rem;
+    }
+  }
 }
 
 .linksGrid {
+  align-self: center;
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
 
   @media (max-width: 768px) {
     width: 100%;
+    margin-bottom: 2rem;
   }
 }
 
@@ -70,16 +83,18 @@
       transform: translateY(-3px);
     }
   }
+  @media (max-width: 424px) {
+    font-size: 0.8rem;
+  }
 }
 
 .bottomBar {
-  margin-top: 60px;
-  padding-top: 24px;
-  border-top: 1px solid #1a1a1a;
+  font-family: "Press Start 2P", sans-serif;
   text-align: center;
-
+  padding: 30px;
+  background-color: var(--bg-color);
   p {
-    font-size: 0.85rem;
-    color: #444;
+    font-size: 1rem;
+    color: #ffffff;
   }
 }
