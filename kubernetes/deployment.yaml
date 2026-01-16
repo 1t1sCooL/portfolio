@@ -17,28 +17,32 @@ spec:
         - name: main-page-app
           image: 1t1scool/main-page-app:latest
           ports:
-            - containerPort: 3000 # Next.js standalone слушает 3000
+            - containerPort: 3000
           env:
             - name: NODE_ENV
               value: "production"
             - name: PORT
               value: "3000"
+            - name: HOSTNAME
+              value: "0.0.0.0" # Позволяет K8s достучаться до пода
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: "256Mi" # Увеличил базу
+              cpu: "200m"
             limits:
-              memory: "512Mi" # Для SSR Next.js лучше дать 512Mi, 256Mi может быть мало при сборке страниц
-              cpu: "500m"
+              memory: "1Gi" # Запас для обработки 35 картинок
+              cpu: "1000m" # 1 целое ядро для быстрой работы SSR
           livenessProbe:
             httpGet:
-              path: /api/health # Если есть такой роут, лучше слать сюда
+              path: / # Изменил на корень, так надежнее
               port: 3000
-            initialDelaySeconds: 15
+            initialDelaySeconds: 30 # Даем больше времени на холодный старт
             periodSeconds: 20
+            failureThreshold: 3
           readinessProbe:
             httpGet:
               path: /
               port: 3000
-            initialDelaySeconds: 10
+            initialDelaySeconds: 20
             periodSeconds: 10
+            failureThreshold: 3
