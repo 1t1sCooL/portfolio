@@ -15,7 +15,6 @@ spec:
     spec:
       containers:
         - name: main-page-app
-          # Не забудь добавить префикс Docker Hub (1t1scool/), если качаешь из облака
           image: 1t1scool/main-page-app:latest
           ports:
             - containerPort: 3000 # Next.js standalone слушает 3000
@@ -31,29 +30,15 @@ spec:
             limits:
               memory: "512Mi" # Для SSR Next.js лучше дать 512Mi, 256Mi может быть мало при сборке страниц
               cpu: "500m"
-          # LivenessProbe проверяет, не завис ли сервер совсем
           livenessProbe:
             httpGet:
               path: /api/health # Если есть такой роут, лучше слать сюда
               port: 3000
             initialDelaySeconds: 15
             periodSeconds: 20
-          # ReadinessProbe проверяет, готов ли сервер принимать реальный трафик
           readinessProbe:
             httpGet:
               path: /
               port: 3000
             initialDelaySeconds: 10
             periodSeconds: 10
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: main-page-app-service
-spec:
-  selector:
-    app: main-page-app
-  ports:
-    - protocol: TCP
-      port: 80 # Внешний порт внутри кластера
-      targetPort: 3000 # Порт внутри контейнера Next.js
