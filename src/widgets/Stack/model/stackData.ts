@@ -7,7 +7,7 @@ export const STACK_DATA = [
       "SCSS/SASS",
       "Bootstrap",
       "TailwindCSS",
-      "Cross-Browser Compatibility",
+      "CSS Modules",
       "Styled Components",
       "Responsive Design",
       "UI/UX Design",

@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import FallingText from "../../../shared/ui/FallingText/FallingText";
 import { STACK_DATA } from "../model/stackData";
 import styles from "./Stack.module.scss";
 
