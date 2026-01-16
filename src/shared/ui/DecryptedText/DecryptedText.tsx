@@ -19,7 +19,7 @@ const styles = {
 };
 
 interface DecryptedTextProps extends HTMLMotionProps<"span"> {
-  text: ReactNode;
+  text: string;
   speed?: number;
   maxIterations?: number;
   sequential?: boolean;
