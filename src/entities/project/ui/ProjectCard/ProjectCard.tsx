@@ -26,7 +26,10 @@ export const ProjectCard = ({
         alt={title}
         fill
         className={styles.img}
-        sizes="(max-width: 768px) 100vw, 33vw"
+        sizes="(max-width: 640px) 100vw, 
+         (max-width: 1024px) 50vw, 
+         (max-width: 1440px) 25vw, 
+         20vw"
       />
       <div className={styles.overlay}>
         <div className={styles.links}>
