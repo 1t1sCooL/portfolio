@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import styles from "./Header.module.scss";
-import { FuzzyText } from "@/shared/ui/FuzzyText/FuzzyText";
+import { FuzzyText } from "@/shared/ui";
 import Link from "next/link";
 
 const navLinks = [

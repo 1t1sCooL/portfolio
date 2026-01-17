@@ -1,3 +1,4 @@
+"use client";
 import React, { useRef, useEffect, useState, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -128,7 +129,7 @@ export const Shuffle: React.FC<ShuffleProps> = ({
         }
         try {
           splitRef.current?.revert();
-        } catch {}
+        } catch { }
         splitRef.current = null;
         playingRef.current = false;
       };
