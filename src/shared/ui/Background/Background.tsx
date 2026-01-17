@@ -87,9 +87,8 @@ const createTouchTexture = (): TouchTexture => {
     else
       intensity = easeOutQuad(1 - (p.age - maxAge * 0.3) / (maxAge * 0.7)) || 0;
     intensity *= p.force;
-    const color = `${((p.vx + 1) / 2) * 255}, ${((p.vy + 1) / 2) * 255}, ${
-      intensity * 255
-    }`;
+    const color = `${((p.vx + 1) / 2) * 255}, ${((p.vy + 1) / 2) * 255}, ${intensity * 255
+      }`;
     const offset = size * 5;
     ctx.shadowOffsetX = offset;
     ctx.shadowOffsetY = offset;
@@ -360,7 +359,7 @@ void main(){
 
 const MAX_CLICKS = 10;
 
-const PixelBlast: React.FC<PixelBlastProps> = ({
+export const Background: React.FC<PixelBlastProps> = ({
   variant = "square",
   pixelSize = 3,
   color = "#B19EEF",
@@ -741,4 +740,4 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
   );
 };
 
-export default PixelBlast;
+

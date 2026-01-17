@@ -1,0 +1,40 @@
+.filter {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.searchInput {
+  width: 100%;
+  max-width: 600px;
+  padding: 16px 24px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  font-family: "Press Start 2P", sans-serif;
+  word-spacing: -5px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  outline: none;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  &:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  &:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 424px) {
+    font-size: 0.8rem;
+  }
+}

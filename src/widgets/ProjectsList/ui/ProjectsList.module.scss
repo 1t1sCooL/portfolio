@@ -3,8 +3,8 @@
   max-width: 100%;
   margin: 0 auto;
   min-height: auto;
-  background-color: var(--bg-color);
   font-family: "Press Start 2P", sans-serif;
+
   @media (max-width: 768px) {
     padding: 20px 20px 40px;
   }
@@ -17,9 +17,10 @@
 
   align-items: stretch;
 }
+
 .title {
   font-size: 2.5rem;
   color: var(--text-primary);
-  margin: 10px 0 40px;
+  margin: 10px 0 20px;
   text-align: center;
 }

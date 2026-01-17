@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 
 interface FuzzyTextProps {
@@ -68,13 +69,11 @@ export const FuzzyText: React.FC<FuzzyTextProps> = ({
 
       // Performance mode: render static text without animations
       if (performanceMode) {
-        ctx.font = `${fontWeight} ${
-          typeof fontSize === "number" ? `${fontSize}px` : fontSize
-        } ${
-          fontFamily === "inherit"
+        ctx.font = `${fontWeight} ${typeof fontSize === "number" ? `${fontSize}px` : fontSize
+          } ${fontFamily === "inherit"
             ? window.getComputedStyle(canvas).fontFamily || "sans-serif"
             : fontFamily
-        }`;
+          }`;
         ctx.fillStyle = color;
         ctx.textBaseline = "alphabetic";
         const text = React.Children.toArray(children).join("");

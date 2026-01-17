@@ -1,5 +1,6 @@
+"use client";
 import { useEffect, useState, useRef, ReactNode } from "react";
-import { motion, HTMLMotionProps } from "motion/react";
+import { motion, HTMLMotionProps } from "framer-motion";
 
 const styles = {
   wrapper: {
@@ -32,7 +33,7 @@ interface DecryptedTextProps extends HTMLMotionProps<"span"> {
   animateOn?: "view" | "hover" | "both";
 }
 
-export default function DecryptedText({
+export const DecryptedText = ({
   text,
   speed = 50,
   maxIterations = 10,
@@ -45,7 +46,7 @@ export default function DecryptedText({
   encryptedClassName = "",
   animateOn = "hover",
   ...props
-}: DecryptedTextProps) {
+}: DecryptedTextProps) => {
   const [displayText, setDisplayText] = useState<string>(text);
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const [isScrambling, setIsScrambling] = useState<boolean>(false);
@@ -225,9 +226,9 @@ export default function DecryptedText({
   const hoverProps =
     animateOn === "hover" || animateOn === "both"
       ? {
-          onMouseEnter: () => setIsHovering(true),
-          onMouseLeave: () => setIsHovering(false),
-        }
+        onMouseEnter: () => setIsHovering(true),
+        onMouseLeave: () => setIsHovering(false),
+      }
       : {};
 
   return (
