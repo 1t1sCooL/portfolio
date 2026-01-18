@@ -4,7 +4,7 @@
   border-top: 1px solid #ffffff;
   border-bottom: 1px solid #ffffff;
   color: #fff;
-  font-family: "Press Start 2P", sans-serif;
+  font-family: var(--font-press-start), sans-serif;
   @media (max-width: 768px) {
     padding: 30px 20px;
   }
@@ -89,7 +89,7 @@
 }
 
 .bottomBar {
-  font-family: "Press Start 2P", sans-serif;
+  font-family: var(--font-press-start), sans-serif;
   text-align: center;
   padding: 30px;
   background-color: var(--bg-color);
