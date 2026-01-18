@@ -2,8 +2,13 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
-import { ClientBackground } from "@/shared/ui/";
+import dynamic from "next/dynamic";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
+
+const ClientBackground = dynamic(
+  () => import("@/shared/ui").then((mod) => mod.ClientBackground),
+  { ssr: false },
+);
 
 const pressStart2P = Press_Start_2P({
   weight: "400",
@@ -22,6 +27,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mmalabugin.ru"),
   title: "Алабугин Михаил",
   description: "Software Developer",
   openGraph: {
