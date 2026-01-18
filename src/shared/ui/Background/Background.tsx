@@ -424,6 +424,7 @@ export const Background: React.FC<PixelBlastProps> = ({
   } | null>(null);
   const prevConfigRef = useRef<ReinitConfig | null>(null);
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const container = containerRef.current;
     if (!container) return;
     speedRef.current = speed;
