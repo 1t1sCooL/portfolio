@@ -2,13 +2,8 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
-import dynamic from "next/dynamic";
+import { ClientBackground } from "@/shared/ui";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
-
-const ClientBackground = dynamic(
-  () => import("@/shared/ui").then((mod) => mod.ClientBackground),
-  { ssr: false },
-);
 
 const pressStart2P = Press_Start_2P({
   weight: "400",
