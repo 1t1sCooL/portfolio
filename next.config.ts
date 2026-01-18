@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
     includePaths: [path.join(__dirname, "src")],
     prependData: `@use "@/app/styles/abstracts/_vars.scss" as v;`,
   },
+  experimental: {
+    optimizeCss: true,
+  },
 };
 
 export default nextConfig;
