@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
-import { ClientBackground } from "@/shared/ui";
+import { ClientBackground } from "@/shared/ui/Background/ClientBackground";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
 
 const pressStart2P = Press_Start_2P({
