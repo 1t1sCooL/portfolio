@@ -38,7 +38,7 @@ export const Header = () => {
       }}
     >
       <nav className={styles.container}>
-        <Link href="/">
+        <Link href="/" aria-label="Главная страница">
           <FuzzyText
             fontSize={"2rem"}
             baseIntensity={0.1}
@@ -53,7 +53,7 @@ export const Header = () => {
             Mikhail Alabugin
           </FuzzyText>
         </Link>
-        <Link href="/">
+        <Link href="/" aria-label="Главная страница">
           <FuzzyText
             fontSize={"2rem"}
             baseIntensity={0.1}
@@ -66,7 +66,7 @@ export const Header = () => {
             Mikhail
           </FuzzyText>
         </Link>
-        <Link href="/">
+        <Link href="/" aria-label="Главная страница">
           <FuzzyText
             fontSize={"2rem"}
             baseIntensity={0.1}
@@ -89,7 +89,6 @@ export const Header = () => {
                   baseIntensity={0.05}
                   hoverIntensity={0.2}
                   clickEffect={true}
-                  hideAccessibilityText={true}
                   wordSpacing={link.name === "Обо мне" ? -10 : 0}
                 >
                   {link.name}

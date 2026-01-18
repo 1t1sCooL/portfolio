@@ -87,8 +87,9 @@ const createTouchTexture = (): TouchTexture => {
     else
       intensity = easeOutQuad(1 - (p.age - maxAge * 0.3) / (maxAge * 0.7)) || 0;
     intensity *= p.force;
-    const color = `${((p.vx + 1) / 2) * 255}, ${((p.vy + 1) / 2) * 255}, ${intensity * 255
-      }`;
+    const color = `${((p.vx + 1) / 2) * 255}, ${((p.vy + 1) / 2) * 255}, ${
+      intensity * 255
+    }`;
     const offset = size * 5;
     ctx.shadowOffsetX = offset;
     ctx.shadowOffsetY = offset;
@@ -146,7 +147,7 @@ const createTouchTexture = (): TouchTexture => {
 
 const createLiquidEffect = (
   texture: THREE.Texture,
-  opts?: { strength?: number; freq?: number }
+  opts?: { strength?: number; freq?: number },
 ) => {
   const fragment = `
     uniform sampler2D uTexture;
@@ -474,7 +475,7 @@ export const Background: React.FC<PixelBlastProps> = ({
         uClickPos: {
           value: Array.from(
             { length: MAX_CLICKS },
-            () => new THREE.Vector2(-1, -1)
+            () => new THREE.Vector2(-1, -1),
           ),
         },
         uClickTimes: { value: new Float32Array(MAX_CLICKS) },
@@ -511,12 +512,12 @@ export const Background: React.FC<PixelBlastProps> = ({
         renderer.setSize(w, h, false);
         uniforms.uResolution.value.set(
           renderer.domElement.width,
-          renderer.domElement.height
+          renderer.domElement.height,
         );
         if (threeRef.current?.composer)
           threeRef.current.composer.setSize(
             renderer.domElement.width,
-            renderer.domElement.height
+            renderer.domElement.height,
           );
         uniforms.uPixelSize.value = pixelSize * renderer.getPixelRatio();
       };
@@ -562,7 +563,7 @@ export const Background: React.FC<PixelBlastProps> = ({
               ["uTime", new THREE.Uniform(0)],
               ["uAmount", new THREE.Uniform(noiseAmount)],
             ]),
-          }
+          },
         );
         const noisePass = new EffectPass(camera, noiseEffect);
         noisePass.renderToScreen = true;
@@ -735,9 +736,6 @@ export const Background: React.FC<PixelBlastProps> = ({
       ref={containerRef}
       className={`pixel-blast-container ${className ?? ""}`}
       style={style}
-      aria-label="PixelBlast interactive background"
     />
   );
 };
-
-

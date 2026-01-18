@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
-import { ClientBackground } from "./ClientBackground";
+import { ClientBackground } from "@/shared/ui/";
+import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
 
+const pressStart2P = Press_Start_2P({
+  weight: "400",
+  subsets: ["cyrillic", "latin"],
+  variable: "--font-press-start",
+  display: "swap",
+});
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -47,7 +53,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable}`}
+      >
         <ClientBackground
           style={{
             position: "fixed",

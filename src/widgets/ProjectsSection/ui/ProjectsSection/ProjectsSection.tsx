@@ -4,6 +4,7 @@ import { PROJECTS } from "@/shared/constants";
 import { ProjectFilter } from "@/features/ProjectFilter";
 import { ProjectsList } from "@/widgets/ProjectsList";
 import styles from "./ProjectsSection.module.scss";
+import { motion } from "framer-motion";
 
 const getCountByWidth = (width: number) => {
   if (width > 1884) return 5;
@@ -39,7 +40,7 @@ export const ProjectsSection = () => {
         .toLowerCase()
         .includes(query);
       const stackMatch = project.stack.some((tech) =>
-        tech.toLowerCase().includes(query)
+        tech.toLowerCase().includes(query),
       );
 
       return titleMatch || descriptionMatch || stackMatch;
@@ -57,7 +58,9 @@ export const ProjectsSection = () => {
     setVisibleCount(
       (prev) =>
         prev +
-        (typeof window !== "undefined" ? getCountByWidth(window.innerWidth) : 3)
+        (typeof window !== "undefined"
+          ? getCountByWidth(window.innerWidth)
+          : 3),
     );
   };
 
@@ -73,11 +76,18 @@ export const ProjectsSection = () => {
         }
       />
       {hasMoreProjects && !searchQuery.trim() && (
-        <div className={styles.buttonContainer}>
-          <button onClick={handleLoadMore} className={styles.toggleButton}>
-            Показать еще (осталось {remainingCount})
-          </button>
-        </div>
+        <motion.div
+          key={"more"}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className={styles.card}
+        >
+          <div className={styles.buttonContainer}>
+            <button onClick={handleLoadMore} className={styles.toggleButton}>
+              Показать еще (осталось {remainingCount})
+            </button>
+          </div>
+        </motion.div>
       )}
     </section>
   );

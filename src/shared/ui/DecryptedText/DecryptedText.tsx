@@ -1,11 +1,11 @@
 "use client";
-import { useEffect, useState, useRef, ReactNode } from "react";
+import { useEffect, useState, useRef, ReactNode, Suspense } from "react";
 import { motion, HTMLMotionProps } from "framer-motion";
 
 const styles = {
   wrapper: {
-    display: "inline-block",
-    whiteSpace: "pre-wrap",
+    display: "inline-block" as const,
+    whiteSpace: "pre-wrap" as const,
   },
   srOnly: {
     position: "absolute" as const,
@@ -31,6 +31,7 @@ interface DecryptedTextProps extends HTMLMotionProps<"span"> {
   parentClassName?: string;
   encryptedClassName?: string;
   animateOn?: "view" | "hover" | "both";
+  performanceMode?: boolean;
 }
 
 export const DecryptedText = ({
@@ -45,13 +46,14 @@ export const DecryptedText = ({
   parentClassName = "",
   encryptedClassName = "",
   animateOn = "hover",
+  performanceMode = false,
   ...props
 }: DecryptedTextProps) => {
   const [displayText, setDisplayText] = useState<string>(text);
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const [isScrambling, setIsScrambling] = useState<boolean>(false);
   const [revealedIndices, setRevealedIndices] = useState<Set<number>>(
-    new Set()
+    new Set(),
   );
   const [hasAnimated, setHasAnimated] = useState<boolean>(false);
   const containerRef = useRef<HTMLSpanElement>(null);
@@ -97,7 +99,7 @@ export const DecryptedText = ({
 
     const shuffleText = (
       originalText: string,
-      currentRevealed: Set<number>
+      currentRevealed: Set<number>,
     ): string => {
       if (useOriginalCharsOnly) {
         const positions = originalText.split("").map((char, i) => ({
@@ -209,7 +211,7 @@ export const DecryptedText = ({
 
     const observer = new IntersectionObserver(
       observerCallback,
-      observerOptions
+      observerOptions,
     );
     const currentRef = containerRef.current;
     if (currentRef) {
@@ -226,10 +228,21 @@ export const DecryptedText = ({
   const hoverProps =
     animateOn === "hover" || animateOn === "both"
       ? {
-        onMouseEnter: () => setIsHovering(true),
-        onMouseLeave: () => setIsHovering(false),
-      }
+          onMouseEnter: () => setIsHovering(true),
+          onMouseLeave: () => setIsHovering(false),
+        }
       : {};
+
+  if (performanceMode) {
+    return (
+      <span className={parentClassName} style={styles.wrapper}>
+        <span style={styles.srOnly}>{text}</span>
+        <span aria-hidden="true" className={className}>
+          {text}
+        </span>
+      </span>
+    );
+  }
 
   return (
     <motion.span
@@ -239,7 +252,7 @@ export const DecryptedText = ({
       {...hoverProps}
       {...props}
     >
-      <span style={styles.srOnly}>{displayText}</span>
+      <span style={styles.srOnly}>{text}</span>
 
       <span aria-hidden="true">
         {displayText.split("").map((char, index) => {
@@ -258,4 +271,4 @@ export const DecryptedText = ({
       </span>
     </motion.span>
   );
-}
+};

@@ -6,7 +6,7 @@
   z-index: 1000;
   padding: 24px 0;
   transition: all var(--transition-base);
-  font-family: "Press Start 2P", sans-serif;
+  font-family: var(--font-press-start), sans-serif;
 }
 
 .container {
@@ -78,7 +78,9 @@
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 600;
-  transition: transform var(--transition-base), opacity var(--transition-base);
+  transition:
+    transform var(--transition-base),
+    opacity var(--transition-base);
 
   &:hover {
     opacity: 0.9;

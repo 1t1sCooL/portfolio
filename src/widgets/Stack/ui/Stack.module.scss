@@ -1,7 +1,7 @@
 .section {
   padding: 20px 82px;
   background-color: var(--bg-color);
-  font-family: "Press Start 2P", sans-serif;
+  font-family: var(--font-press-start), sans-serif;
   @media (max-width: 768px) {
     padding: 20px 20px;
   }

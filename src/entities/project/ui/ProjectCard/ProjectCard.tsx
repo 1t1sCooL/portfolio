@@ -9,6 +9,7 @@ interface ProjectProps {
   stack: string[];
   link: string;
   github: string;
+  delay?: number;
 }
 
 export const ProjectCard = ({
@@ -18,8 +19,15 @@ export const ProjectCard = ({
   stack,
   link,
   github,
+  delay = 0,
 }: ProjectProps) => (
-  <motion.article className={styles.card}>
+  <motion.article
+    className={styles.card}
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 5.0, delay, ease: [0.16, 1, 0.3, 1] }}
+  >
     <div className={styles.imageWrapper}>
       <Image
         src={image}
