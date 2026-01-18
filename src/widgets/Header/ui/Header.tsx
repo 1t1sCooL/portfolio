@@ -21,7 +21,7 @@ export const Header = () => {
       setScrollOpacity(opacity);
     };
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Set initial state
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 

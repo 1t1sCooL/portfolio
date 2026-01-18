@@ -1,8 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { FadeIn } from "@/shared/ui";
+import { FadeIn, usePerformanceMode } from "@/shared/ui";
 import dynamic from "next/dynamic";
-import { useState } from "react";
 import styles from "./About.module.scss";
 
 const DecryptedText = dynamic(() =>
@@ -19,10 +18,7 @@ const skills = [
 ];
 
 export const About = () => {
-  const performanceMode = useState(() => {
-    const nav = navigator as Navigator & { deviceMemory?: number };
-    return navigator.hardwareConcurrency < 4 || (nav.deviceMemory ?? 8) < 4;
-  })[0];
+  const performanceMode = usePerformanceMode();
 
   return (
     <section className={styles.section} id="about">
