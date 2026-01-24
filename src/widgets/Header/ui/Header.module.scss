@@ -7,8 +7,35 @@
   padding: 24px 0;
   transition: all var(--transition-base);
   font-family: var(--font-press-start), sans-serif;
+  a {
+    text-decoration: none;
+  }
 }
-
+.perfomanceMode {
+  position: static;
+  padding: 0;
+  @media (max-width: 1300px) {
+    padding: 0 0 20px 0;
+  }
+  @media (max-width: 768px) {
+    padding: 0;
+  }
+}
+.perfomanceNav {
+  display: block;
+  word-spacing: -10px;
+  @media (max-width: 670px) {
+    padding-bottom: 10px;
+  }
+  gap: 5px;
+}
+.fullName {
+  word-spacing: -10px;
+  text-align: center;
+  @media (max-width: 670px) {
+    margin: 0;
+  }
+}
 .container {
   max-width: auto;
   margin: 0 auto;
@@ -19,7 +46,14 @@
   @media (max-width: 1300px) {
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
   }
+}
+
+.perfomanceMode .container {
+  flex-wrap: wrap;
+  margin: 0 0;
+  padding: 0 82px;
 }
 .shortName {
   display: none;
@@ -68,6 +102,12 @@
   @media (max-width: 768px) {
     display: none;
   }
+}
+
+.perfomanceMode .nav {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .cta {
