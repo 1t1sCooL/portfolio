@@ -21,7 +21,14 @@ export const About = () => {
   const performanceMode = usePerformanceMode();
 
   return (
-    <section className={styles.section} id="about">
+    <section
+      className={
+        performanceMode
+          ? `${styles.section} ${styles.perfomanceMode}`
+          : styles.section
+      }
+      id="about"
+    >
       <div className={styles.container}>
         <FadeIn>
           <div className={styles.content}>

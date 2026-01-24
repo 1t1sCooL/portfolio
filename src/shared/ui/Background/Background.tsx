@@ -38,6 +38,7 @@ type PixelBlastProps = {
   className?: string;
   style?: React.CSSProperties;
   antialias?: boolean;
+  maxPixelRatio?: number;
   patternScale?: number;
   patternDensity?: number;
   liquid?: boolean;
@@ -367,6 +368,7 @@ export const Background: React.FC<PixelBlastProps> = ({
   className,
   style,
   antialias = true,
+  maxPixelRatio = 2,
   patternScale = 2,
   patternDensity = 1,
   liquid = false,
@@ -465,7 +467,9 @@ export const Background: React.FC<PixelBlastProps> = ({
       });
       renderer.domElement.style.width = "100%";
       renderer.domElement.style.height = "100%";
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio || 1, maxPixelRatio),
+      );
       container.appendChild(renderer.domElement);
       if (transparent) renderer.setClearAlpha(0);
       else renderer.setClearColor(0x000000, 1);

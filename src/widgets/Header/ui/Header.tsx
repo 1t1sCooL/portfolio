@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import styles from "./Header.module.scss";
-import { FuzzyText } from "@/shared/ui";
+import { FuzzyText, usePerformanceMode } from "@/shared/ui";
 import Link from "next/link";
 
 const navLinks = [
@@ -13,6 +13,7 @@ const navLinks = [
 
 export const Header = () => {
   const [scrollOpacity, setScrollOpacity] = useState(0);
+  const performanceMode = usePerformanceMode();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,72 +28,99 @@ export const Header = () => {
 
   return (
     <header
-      className={styles.header}
+      className={
+        performanceMode
+          ? `${styles.header} ${styles.perfomanceMode}`
+          : styles.header
+      }
       style={{
-        background: `rgba(var(--bg-rgb), ${scrollOpacity})`,
-        backdropFilter: scrollOpacity > 0 ? "blur(12px)" : "none",
+        background: performanceMode
+          ? "hsla(0, 0%, 0%, 0.6)"
+          : `rgba(var(--bg-rgb), ${scrollOpacity})`,
+        backdropFilter:
+          scrollOpacity > 0 && !performanceMode ? "blur(12px)" : "none",
         borderBottom:
           scrollOpacity > 0
-            ? "1px solid rgba(255, 255, 255, 0.1)"
+            ? "1px solid rgba(255, 255, 255, 0.05)"
             : "1px solid transparent",
       }}
     >
       <nav className={styles.container}>
         <Link href="/" aria-label="Главная страница">
-          <FuzzyText
-            fontSize={"2rem"}
-            baseIntensity={0.1}
-            glitchMode={true}
-            glitchInterval={7000}
-            glitchDuration={300}
-            className={styles.fullName}
-            hideAccessibilityText={true}
-            clickEffect={true}
-            wordSpacing={-10}
-          >
-            Mikhail Alabugin
-          </FuzzyText>
+          {performanceMode ? (
+            <h1 className={styles.fullName}>Mikhail Alabugin</h1>
+          ) : (
+            <FuzzyText
+              fontSize={"2rem"}
+              baseIntensity={0.1}
+              glitchMode={true}
+              glitchInterval={7000}
+              glitchDuration={300}
+              className={styles.fullName}
+              hideAccessibilityText={true}
+              clickEffect={true}
+              wordSpacing={-10}
+              performanceMode={performanceMode}
+            >
+              Mikhail Alabugin
+            </FuzzyText>
+          )}
         </Link>
         <Link href="/" aria-label="Главная страница">
-          <FuzzyText
-            fontSize={"2rem"}
-            baseIntensity={0.1}
-            glitchMode={true}
-            glitchInterval={7000}
-            glitchDuration={300}
-            className={styles.shortName}
-            hideAccessibilityText={true}
-          >
-            Mikhail
-          </FuzzyText>
+          {performanceMode ? (
+            <h1 className={styles.shortName}>Mikhail</h1>
+          ) : (
+            <FuzzyText
+              fontSize={"2rem"}
+              baseIntensity={0.1}
+              glitchMode={true}
+              glitchInterval={7000}
+              glitchDuration={300}
+              className={styles.shortName}
+              hideAccessibilityText={true}
+              performanceMode={performanceMode}
+            >
+              Mikhail
+            </FuzzyText>
+          )}
         </Link>
         <Link href="/" aria-label="Главная страница">
-          <FuzzyText
-            fontSize={"2rem"}
-            baseIntensity={0.1}
-            glitchMode={true}
-            glitchInterval={7000}
-            glitchDuration={300}
-            className={styles.shortName}
-            hideAccessibilityText={true}
-          >
-            Alabugin
-          </FuzzyText>
+          {performanceMode ? (
+            <h1 className={styles.shortName}>Alabugin</h1>
+          ) : (
+            <FuzzyText
+              fontSize={"2rem"}
+              baseIntensity={0.1}
+              glitchMode={true}
+              glitchInterval={7000}
+              glitchDuration={300}
+              className={styles.shortName}
+              hideAccessibilityText={true}
+              performanceMode={performanceMode}
+            >
+              Alabugin
+            </FuzzyText>
+          )}
         </Link>
 
         <ul className={styles.nav}>
           {navLinks.map((link) => (
             <li key={link.href}>
               <a href={link.href}>
-                <FuzzyText
-                  fontSize={"1rem"}
-                  baseIntensity={0.05}
-                  hoverIntensity={0.2}
-                  clickEffect={true}
-                  wordSpacing={link.name === "Обо мне" ? -10 : 0}
-                >
-                  {link.name}
-                </FuzzyText>
+                {performanceMode ? (
+                  <span className={styles.perfomanceNav}>{link.name}</span>
+                ) : (
+                  <FuzzyText
+                    fontSize={"1rem"}
+                    baseIntensity={0.05}
+                    hoverIntensity={0.2}
+                    clickEffect={true}
+                    wordSpacing={link.name === "Обо мне" ? -10 : 0}
+                    performanceMode={performanceMode}
+                  >
+                    {link.name}
+                  </FuzzyText>
+                )}
               </a>
             </li>
           ))}
