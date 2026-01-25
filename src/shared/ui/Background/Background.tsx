@@ -734,6 +734,7 @@ export const Background: React.FC<PixelBlastProps> = ({
     variant,
     color,
     speed,
+    maxPixelRatio,
   ]);
 
   return (
