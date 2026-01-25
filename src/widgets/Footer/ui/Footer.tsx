@@ -40,7 +40,7 @@ export const Footer = () => {
               <span>github.com/1t1sCooL</span>
             </a>
             <a
-              href="https://vk.com/itiscoool"
+              href="https://vk.com/1t1scool"
               target="_blank"
               rel="noreferrer"
               className={styles.linkItem}

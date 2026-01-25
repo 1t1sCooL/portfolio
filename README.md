@@ -1,39 +1,174 @@
-# portfolio
+# Портфолио Разработчика
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Современное портфолио разработчика, демонстрирующее навыки в создании веб-приложений, от простых лендингов до сложных систем с микросервисной архитектурой. Проект построен на Next.js 15 с использованием Feature-Sliced Design (FSD) архитектуры и включает более 30 проектов различной сложности.
 
-## Getting Started
+## 🚀 Технологии
 
-First, run the development server:
+### Frontend
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 15** - React фреймворк с App Router
+- **TypeScript** - типизированный JavaScript
+- **SCSS** - препроцессор стилей с модульной архитектурой
+- **Framer Motion** - анимации и переходы
+- **GSAP** - продвинутые анимации
+- **Three.js** - 3D графика и эффекты постобработки
+
+### Архитектура
+
+- **Feature-Sliced Design (FSD)** - масштабируемая архитектура
+- **Atomic Design** - компонентная система
+- **Custom Hooks** - переиспользуемая логика
+- **Error Boundaries** - обработка ошибок
+- **Lazy Loading** - оптимизация загрузки
+
+### Качество кода
+
+- **ESLint** - линтинг кода
+- **React Compiler** - оптимизация React
+- **CSS Optimization** - оптимизация стилей
+
+### Развертывание
+
+- **Docker** - контейнеризация
+- **Kubernetes** - оркестрация контейнеров
+- **Jenkins** - CI/CD пайплайн
+- **Nginx** - reverse proxy
+
+## 📁 Структура проекта
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── globals.scss       # Глобальные стили
+│   ├── layout.tsx         # Корневой layout
+│   └── page.tsx           # Главная страница
+├── entities/              # Бизнес-сущности
+│   └── project/           # Сущность "Проект"
+├── features/              # Бизнес-функции
+│   └── ProjectFilter/     # Фильтр проектов
+├── shared/                # Переиспользуемый код
+│   ├── constants/         # Константы (проекты, стек)
+│   ├── styles/            # Общие стили
+│   └── ui/                # UI компоненты
+├── views/                 # Страницы приложения
+│   └── Home/              # Главная страница
+└── widgets/               # Комплексные UI блоки
+    ├── About/             # О себе
+    ├── Stack/             # Технологический стек
+    ├── ProjectsSection/   # Секция проектов
+    └── ...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠 Установка и запуск
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Локальная разработка
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Клонируйте репозиторий:**
 
-## Learn More
+   ```bash
+   git clone https://github.com/1t1sCooL/portfolio.git
+   cd portfolio
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Установите зависимости:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Запустите dev-сервер:**
 
-## Deploy on Vercel
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Откройте в браузере:**
+   [http://localhost:3000](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Docker
 
+```bash
+# Сборка образа
+docker build -t portfolio .
+
+# Запуск контейнера
+docker run -p 3000:3000 portfolio
+```
+
+### Kubernetes
+
+Проект настроен для развертывания в Kubernetes кластер:
+
+```bash
+# Применение манифестов
+kubectl apply -f kubernetes/
+```
+
+## 📋 Скрипты
+
+- `npm run dev` - запуск dev-сервера
+- `npm run build` - сборка production версии
+- `npm run start` - запуск production сервера
+- `npm run lint` - проверка кода ESLint
+
+## 🎨 Особенности
+
+### Анимации и эффекты
+
+- **Framer Motion** для плавных переходов
+- **GSAP** для сложных анимаций
+- **Three.js** для 3D эффектов
+- **CSS Animations** для микро-интеракций
+
+### Производительность
+
+- **Lazy Loading** компонентов
+- **Image Optimization** через Next.js
+- **Code Splitting** для уменьшения бандла
+- **React Compiler** для оптимизации
+
+### Доступность
+
+- **Semantic HTML** структура
+- **Keyboard Navigation** поддержка
+- **Screen Reader** совместимость
+- **Focus Management** управление фокусом
+
+## 🚀 Развертывание
+
+### CI/CD Pipeline
+
+Проект использует Jenkins для автоматизации:
+
+1. **Build** - сборка Docker образа
+2. **Push** - загрузка в Docker Hub
+3. **Deploy** - обновление в Kubernetes
+
+### Конфигурация
+
+- **Dockerfile** - мульти-stage сборка
+- **nginx.conf** - конфигурация reverse proxy
+- **Kubernetes manifests** - deployment, service, ingress
+
+## 🤝 Вклад в проект
+
+1. Fork репозиторий
+2. Создайте feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit изменения (`git commit -m 'Add some AmazingFeature'`)
+4. Push в branch (`git push origin feature/AmazingFeature`)
+5. Откройте Pull Request
+
+## 📄 Лицензия
+
+Этот проект лицензирован под MIT License - см. файл [LICENSE](LICENSE) для деталей.
+
+## 📞 Контакты
+
+**Михаил Алабугин**
+
+- Website: [mmalabugin.ru](https://mmalabugin.ru)
+- GitHub: [@1t1sCooL](https://github.com/1t1sCooL)
+
+---
+
+_Создано с ❤️ используя Next.js и TypeScript_

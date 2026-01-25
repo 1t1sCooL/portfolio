@@ -4,20 +4,6 @@ $accent-color: rgba(59, 130, 246, 1);
 $card-bg: rgba(17, 24, 39, 1);
 $transition-base: 0.3s ease;
 
-$tablet: 768px;
-$desktop: 1024px;
-$bg-color: rgba(10, 10, 10, 0.8);
-$text-primary: rgba(237, 237, 237, 1);
-$text-secondary: rgba(212, 212, 212, 1);
-$accent-color: rgba(59, 130, 246, 1);
-$card-bg: rgba(17, 24, 39, 1);
-$transition-base: 0.3s ease;
-$bg-dark: rgba(10, 10, 10, 1); /* Чёрный фон */
-$bg-main: rgba(0, 17, 0, 1); /* Тёмно-зелёный */
-$text-glowing: rgba(0, 255, 0, 1); /* Яркий зелёный текст */
-$text-dim: rgba(0, 170, 0, 1); /* Приглушённый зелёный */
-$cursor: rgba(255, 255, 255, 1);
-
 :root {
   --bg-color: rgba(10, 10, 10, 0.8);
   --text-primary: rgba(237, 237, 237, 1);
@@ -25,11 +11,6 @@ $cursor: rgba(255, 255, 255, 1);
   --accent-color: rgba(59, 130, 246, 1);
   --card-bg: rgba(17, 24, 39, 1);
   --bg-rgb: 10, 10, 10;
-  --bg-dark: rgba(10, 10, 20, 1);
-  --bg-main: rgba(0, 17, 0, 1);
-  --text-glowing: rgba(0, 255, 0, 1);
-  --text-dim: rgba(0, 170, 0, 1);
-  --cursor: rgba(255, 255, 255, 1);
   --card-bg-color: rgba(0, 0, 0, 0.2);
   --accent-color-rgb: rgb(0, 255, 157);
   --accent-color: rgba(var(--accent-color-rgb), 1);
