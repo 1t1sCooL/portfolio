@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef, ReactNode, Suspense } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, HTMLMotionProps } from "framer-motion";
 
 const styles = {
