@@ -15,45 +15,34 @@ spec:
     spec:
       containers:
         - name: main-page-app
-          # Не забудь добавить префикс Docker Hub (1t1scool/), если качаешь из облака
           image: 1t1scool/main-page-app:latest
           ports:
-            - containerPort: 3000 # Next.js standalone слушает 3000
+            - containerPort: 3000
           env:
             - name: NODE_ENV
               value: "production"
             - name: PORT
               value: "3000"
+            - name: HOSTNAME
+              value: "0.0.0.0" # Позволяет K8s достучаться до пода
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "100m"
+              memory: "256Mi" # Увеличил базу
+              cpu: "200m"
             limits:
-              memory: "512Mi" # Для SSR Next.js лучше дать 512Mi, 256Mi может быть мало при сборке страниц
-              cpu: "500m"
-          # LivenessProbe проверяет, не завис ли сервер совсем
+              memory: "1Gi" # Запас для обработки 35 картинок
+              cpu: "1000m" # 1 целое ядро для быстрой работы SSR
           livenessProbe:
             httpGet:
-              path: /api/health # Если есть такой роут, лучше слать сюда
+              path: / # Изменил на корень, так надежнее
               port: 3000
-            initialDelaySeconds: 15
+            initialDelaySeconds: 30 # Даем больше времени на холодный старт
             periodSeconds: 20
-          # ReadinessProbe проверяет, готов ли сервер принимать реальный трафик
+            failureThreshold: 3
           readinessProbe:
             httpGet:
               path: /
               port: 3000
-            initialDelaySeconds: 10
+            initialDelaySeconds: 20
             periodSeconds: 10
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: main-page-app-service
-spec:
-  selector:
-    app: main-page-app
-  ports:
-    - protocol: TCP
-      port: 80 # Внешний порт внутри кластера
-      targetPort: 3000 # Порт внутри контейнера Next.js
+            failureThreshold: 3

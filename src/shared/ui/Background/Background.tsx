@@ -38,6 +38,7 @@ type PixelBlastProps = {
   className?: string;
   style?: React.CSSProperties;
   antialias?: boolean;
+  maxPixelRatio?: number;
   patternScale?: number;
   patternDensity?: number;
   liquid?: boolean;
@@ -147,7 +148,7 @@ const createTouchTexture = (): TouchTexture => {
 
 const createLiquidEffect = (
   texture: THREE.Texture,
-  opts?: { strength?: number; freq?: number }
+  opts?: { strength?: number; freq?: number },
 ) => {
   const fragment = `
     uniform sampler2D uTexture;
@@ -360,13 +361,14 @@ void main(){
 
 const MAX_CLICKS = 10;
 
-const PixelBlast: React.FC<PixelBlastProps> = ({
+export const Background: React.FC<PixelBlastProps> = ({
   variant = "square",
   pixelSize = 3,
   color = "#B19EEF",
   className,
   style,
   antialias = true,
+  maxPixelRatio = 2,
   patternScale = 2,
   patternDensity = 1,
   liquid = false,
@@ -424,6 +426,7 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
   } | null>(null);
   const prevConfigRef = useRef<ReinitConfig | null>(null);
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const container = containerRef.current;
     if (!container) return;
     speedRef.current = speed;
@@ -464,7 +467,9 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
       });
       renderer.domElement.style.width = "100%";
       renderer.domElement.style.height = "100%";
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(
+        Math.min(window.devicePixelRatio || 1, maxPixelRatio),
+      );
       container.appendChild(renderer.domElement);
       if (transparent) renderer.setClearAlpha(0);
       else renderer.setClearColor(0x000000, 1);
@@ -475,7 +480,7 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         uClickPos: {
           value: Array.from(
             { length: MAX_CLICKS },
-            () => new THREE.Vector2(-1, -1)
+            () => new THREE.Vector2(-1, -1),
           ),
         },
         uClickTimes: { value: new Float32Array(MAX_CLICKS) },
@@ -512,12 +517,12 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
         renderer.setSize(w, h, false);
         uniforms.uResolution.value.set(
           renderer.domElement.width,
-          renderer.domElement.height
+          renderer.domElement.height,
         );
         if (threeRef.current?.composer)
           threeRef.current.composer.setSize(
             renderer.domElement.width,
-            renderer.domElement.height
+            renderer.domElement.height,
           );
         uniforms.uPixelSize.value = pixelSize * renderer.getPixelRatio();
       };
@@ -563,7 +568,7 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
               ["uTime", new THREE.Uniform(0)],
               ["uAmount", new THREE.Uniform(noiseAmount)],
             ]),
-          }
+          },
         );
         const noisePass = new EffectPass(camera, noiseEffect);
         noisePass.renderToScreen = true;
@@ -729,6 +734,7 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
     variant,
     color,
     speed,
+    maxPixelRatio,
   ]);
 
   return (
@@ -736,9 +742,6 @@ const PixelBlast: React.FC<PixelBlastProps> = ({
       ref={containerRef}
       className={`pixel-blast-container ${className ?? ""}`}
       style={style}
-      aria-label="PixelBlast interactive background"
     />
   );
 };
-
-export default PixelBlast;

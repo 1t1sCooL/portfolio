@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -63,3 +62,4 @@ pipeline {
             sh "docker logout" 
         }
     }
+}
