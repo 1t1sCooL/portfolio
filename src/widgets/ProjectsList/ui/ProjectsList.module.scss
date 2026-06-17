@@ -12,10 +12,27 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  // Число колонок жёстко привязано к getCountByWidth() в ProjectsSection,
+  // который ограничивает количество показываемых карточек. Раньше тут было
+  // repeat(auto-fill, ...): на широких экранах CSS насчитывал больше колонок,
+  // чем карточек, и ряд «уезжал» влево с пустой колонкой справа. Явные колонки
+  // = ряд всегда полный и центрируется по контейнеру.
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
 
   align-items: stretch;
+
+  @media (min-width: 1185px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: 1535px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: 1885px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 
 .title {
