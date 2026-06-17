@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { Reveal } from "@/shared/ui";
 import { STACK_DATA } from "../model/stackData";
 import styles from "./Stack.module.scss";
 
@@ -7,23 +7,16 @@ export const Stack = () => {
   return (
     <section className={styles.section} id="skills">
       <div className={styles.container}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className={styles.head}
-        >
+        <Reveal variant="up" className={styles.head}>
           <h2 className={styles.title}>Мой Стек</h2>
-        </motion.div>
+        </Reveal>
 
         <div className={styles.grid}>
           {STACK_DATA.map((item, idx) => (
-            <motion.div
+            <Reveal
               key={item.category}
-              initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.1 }}
-              viewport={{ once: true }}
+              variant={idx % 2 === 0 ? "left" : "right"}
+              delay={idx * 0.1}
               className={styles.card}
             >
               <h3 className={styles.categoryTitle}>{item.category}</h3>
@@ -34,7 +27,7 @@ export const Stack = () => {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -4,7 +4,7 @@ import { PROJECTS } from "@/shared/constants";
 import { ProjectFilter } from "@/features/ProjectFilter";
 import { ProjectsList } from "@/widgets/ProjectsList";
 import styles from "./ProjectsSection.module.scss";
-import { motion } from "framer-motion";
+import { Reveal } from "@/shared/ui";
 
 const getCountByWidth = (width: number) => {
   if (width > 1884) return 5;
@@ -76,18 +76,13 @@ export const ProjectsSection = () => {
         }
       />
       {hasMoreProjects && !searchQuery.trim() && (
-        <motion.div
-          key={"more"}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className={styles.card}
-        >
+        <Reveal key={"more"} variant="up" className={styles.card}>
           <div className={styles.buttonContainer}>
             <button onClick={handleLoadMore} className={styles.toggleButton}>
               Показать еще (осталось {remainingCount})
             </button>
           </div>
-        </motion.div>
+        </Reveal>
       )}
     </section>
   );

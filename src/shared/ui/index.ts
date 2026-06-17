@@ -1,4 +1,5 @@
 export { FadeIn } from "./FadeIn";
+export { Reveal } from "./Reveal";
 export { Background, ClientBackground } from "./Background";
 export { Button } from "./Button";
 export { DecryptedText } from "./DecryptedText";

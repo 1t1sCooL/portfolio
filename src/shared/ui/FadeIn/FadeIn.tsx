@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { Reveal } from "@/shared/ui/Reveal";
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -8,18 +8,10 @@ interface FadeInProps {
   style?: React.CSSProperties;
 }
 
+// Тонкая обёртка над Reveal (fade + сдвиг вверх) — сохраняет прежний API
+// FadeIn, но без framer-motion.
 export const FadeIn = ({ children, delay = 0, ...props }: FadeInProps) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{
-      duration: 0.6,
-      delay,
-      ease: [0.16, 1, 0.3, 1],
-    }}
-    {...props}
-  >
+  <Reveal variant="up" delay={delay} {...props}>
     {children}
-  </motion.div>
+  </Reveal>
 );

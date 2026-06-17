@@ -1,12 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
-import { usePerformanceMode } from "@/shared/ui";
-import dynamic from "next/dynamic";
+import { Reveal, usePerformanceMode, DecryptedText } from "@/shared/ui";
 import styles from "./About.module.scss";
-
-const DecryptedText = dynamic(() =>
-  import("@/shared/ui").then((mod) => mod.DecryptedText),
-);
 
 const skills = [
   "TypeScript",
@@ -43,31 +37,29 @@ export const About = () => {
               />
             </h2>
 
+            {/* Абзацы статичны: длинный многострочный текст под скрамблом
+                давал остаточный CLS (перенос строк). Скрамбл оставлен на
+                заголовке (короткий, sizer держит размер), тегах и счётчиках. */}
             <div className={styles.text}>
               <p>
-                <DecryptedText
-                  text="Привет! Я Михаил, Software Developer с фокусом на создании высокопроизводительных веб-приложений. Мой подход базируется на архитектурной чистоте и удобстве для конечного пользователя."
-                  animateOn="view"
-                  speed={40}
-                  performanceMode={performanceMode}
-                />
+                Привет! Я Михаил, Software Developer с фокусом на создании
+                высокопроизводительных веб-приложений. Мой подход базируется на
+                архитектурной чистоте и удобстве для конечного пользователя.
               </p>
               <p>
-                <DecryptedText
-                  text="В данный момент специализируюсь на экосистеме React/Next.js и методологии Feature-Sliced Design, что позволяет мне строить масштабируемые проекты, которые легко поддерживать."
-                  animateOn="view"
-                  performanceMode={performanceMode}
-                />
+                В данный момент специализируюсь на экосистеме React/Next.js и
+                методологии Feature-Sliced Design, что позволяет мне строить
+                масштабируемые проекты, которые легко поддерживать.
               </p>
             </div>
 
             <div className={styles.skills}>
               {skills.map((skill, index) => (
-                <motion.span
+                <Reveal
                   key={skill}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.1 }}
+                  as="span"
+                  variant="scale"
+                  delay={index * 0.1}
                   className={styles.skillTag}
                 >
                   <DecryptedText
@@ -78,7 +70,7 @@ export const About = () => {
                     maxIterations={10}
                     performanceMode={performanceMode}
                   />
-                </motion.span>
+                </Reveal>
               ))}
             </div>
           </div>

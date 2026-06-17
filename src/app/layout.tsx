@@ -21,11 +21,16 @@ const pressStart2P = Press_Start_2P({
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  // optional: исключаем поздний font-swap тела-текста, который менял
+  // зарезервированный размер DecryptedText → остаточный CLS. Geist почти
+  // неотличим от системного фолбэка.
+  display: "optional",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "optional",
 });
 
 export const metadata: Metadata = {

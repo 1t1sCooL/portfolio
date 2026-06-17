@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Reveal } from "@/shared/ui";
 import styles from "./ProjectCard.module.scss";
 
 interface ProjectProps {
@@ -21,23 +21,21 @@ export const ProjectCard = ({
   github,
   delay = 0,
 }: ProjectProps) => (
-  <motion.article
-    className={styles.card}
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
-  >
+  <Reveal as="article" variant="up" delay={delay} className={styles.card}>
     <div className={styles.imageWrapper}>
       <Image
         src={image}
         alt={title}
         fill
         className={styles.img}
-        sizes={`(max-width: 640px) 100vw, 
-         (max-width: 1024px) 50vw, 
-         (max-width: 1440px) 25vw, 
-         20vw`}
+        // Согласовано с реальной сеткой колонок (ProjectsList): 2 кол. до 1184px,
+        // 3 до 1534px, 4 до 1884px, далее 5. Прежние значения завышали ширину и
+        // браузер тянул картинку крупнее контейнера.
+        sizes={`(max-width: 768px) 46vw,
+         (max-width: 1184px) 40vw,
+         (max-width: 1534px) 30vw,
+         (max-width: 1884px) 22vw,
+         18vw`}
       />
       <div className={styles.overlay}>
         <div className={styles.links}>
@@ -63,5 +61,5 @@ export const ProjectCard = ({
         ))}
       </div>
     </div>
-  </motion.article>
+  </Reveal>
 );
