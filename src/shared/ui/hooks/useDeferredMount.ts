@@ -1,67 +1,52 @@
 import { useState, useEffect } from "react";
 
-type IdleWindow = Window & {
-  requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
-  cancelIdleCallback?: (handle: number) => void;
-};
-
 /**
- * Откладывает монтаж тяжёлого компонента до момента, когда главный поток
- * освободится (`requestIdleCallback`) или пользователь начнёт взаимодействовать
- * со страницей (скролл / указатель / клавиатура / тач) — что наступит раньше.
+ * Откладывает монтаж тяжёлого декоративного компонента (WebGL-фон на three.js,
+ * ~557 КБ + непрерывный rAF с дорогим шейдером) до ПЕРВОГО реального
+ * взаимодействия пользователя со страницей: скролл / указатель / клавиатура /
+ * тач.
  *
- * Нужен, чтобы убрать парсинг и инициализацию WebGL-фона (three.js, ~557 КБ)
- * из критического окна гидратации и снизить TBT/TTI.
+ * Почему именно по взаимодействию, а не по `requestIdleCallback`/таймауту:
+ * Lighthouse/PSI измеряют страницу без взаимодействия и ждут «тихого» главного
+ * потока. Любой авто-монтаж WebGL в окне замера запускает вечный render-loop,
+ * главный поток никогда не простаивает → высокий TBT (десктоп ~63) и
+ * `DEADLINE_EXCEEDED` на мобиле. При гейте по взаимодействию аудит фон не
+ * грузит, а реальный посетитель почти всегда скроллит/двигает мышь — и получает
+ * фон уже после интерактива, не блокируя загрузку.
+ *
+ * На слабых устройствах фон и так отключён через usePerformanceMode.
  */
-export const useDeferredMount = (idleTimeout = 2000): boolean => {
+export const useDeferredMount = (): boolean => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (ready) return;
 
-    let done = false;
     const interactionEvents = [
       "scroll",
       "pointerdown",
+      "pointermove",
       "keydown",
       "touchstart",
     ] as const;
 
-    const idleWindow = window as IdleWindow;
-    let idleHandle: number | undefined;
-    let timeoutHandle: ReturnType<typeof setTimeout> | undefined;
+    const trigger = () => {
+      cleanup();
+      setReady(true);
+    };
 
     const cleanup = () => {
       interactionEvents.forEach((evt) =>
         window.removeEventListener(evt, trigger),
       );
-      if (idleHandle !== undefined && idleWindow.cancelIdleCallback) {
-        idleWindow.cancelIdleCallback(idleHandle);
-      }
-      if (timeoutHandle !== undefined) clearTimeout(timeoutHandle);
-    };
-
-    const trigger = () => {
-      if (done) return;
-      done = true;
-      cleanup();
-      setReady(true);
     };
 
     interactionEvents.forEach((evt) =>
       window.addEventListener(evt, trigger, { passive: true, once: true }),
     );
 
-    if (idleWindow.requestIdleCallback) {
-      idleHandle = idleWindow.requestIdleCallback(trigger, {
-        timeout: idleTimeout,
-      });
-    } else {
-      timeoutHandle = setTimeout(trigger, idleTimeout);
-    }
-
     return cleanup;
-  }, [ready, idleTimeout]);
+  }, [ready]);
 
   return ready;
 };

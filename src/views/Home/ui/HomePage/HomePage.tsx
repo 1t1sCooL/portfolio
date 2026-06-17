@@ -1,37 +1,25 @@
 "use client";
-import dynamic from "next/dynamic";
-import { ErrorBoundary, LoadingFallback } from "@/shared/ui";
+import { ErrorBoundary } from "@/shared/ui";
 import { Hero } from "@/widgets/Hero";
-import { Suspense } from "react";
+import { About } from "@/widgets/About/ui/About";
+import { Stack } from "@/widgets/Stack/ui/Stack";
+import { ProjectsSection } from "@/widgets/ProjectsSection";
 
-const About = dynamic(() =>
-  import("@/widgets/About/ui/About").then((mod) => mod.About),
-);
-const Stack = dynamic(() =>
-  import("@/widgets/Stack/ui/Stack").then((mod) => mod.Stack),
-);
-const ProjectsSection = dynamic(() =>
-  import("@/widgets/ProjectsSection").then((mod) => mod.ProjectsSection),
-);
-
+// Секции рендерим обычным импортом (SSR на месте), без dynamic()+Suspense:
+// ленивая подгрузка основного контента подменяла SSR-разметку маленьким
+// LoadingFallback на время гидратации → огромный CLS и поздний LCP.
 export const HomePage = () => {
   return (
     <main>
       <Hero />
       <ErrorBoundary>
-        <Suspense fallback={<LoadingFallback />}>
-          <About />
-        </Suspense>
+        <About />
       </ErrorBoundary>
       <ErrorBoundary>
-        <Suspense fallback={<LoadingFallback />}>
-          <Stack />
-        </Suspense>
+        <Stack />
       </ErrorBoundary>
       <ErrorBoundary>
-        <Suspense fallback={<LoadingFallback />}>
-          <ProjectsSection />
-        </Suspense>
+        <ProjectsSection />
       </ErrorBoundary>
     </main>
   );
