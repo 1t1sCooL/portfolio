@@ -41,6 +41,13 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizeCss: true,
   },
+  images: {
+    // AVIF на ~20-30% меньше WebP; браузер выберет первый поддерживаемый формат.
+    formats: ["image/avif", "image/webp"],
+    // Превью проектов неизменны — держим оптимизированные варианты в кэше 30 дней
+    // (по умолчанию было 4 часа), чтобы не пере-кодировать на каждый промах.
+    minimumCacheTTL: 2592000,
+  },
   async headers() {
     return [
       {
