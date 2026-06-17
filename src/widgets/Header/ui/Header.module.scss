@@ -131,3 +131,17 @@
     transform: translateY(0);
   }
 }
+
+// Резервируем высоту FuzzyText-canvas. Без width/height-атрибутов canvas
+// имеет intrinsic-размер 300×150, а FuzzyText ужимает его до размера текста
+// (~33px у имени, ~17px у nav) только после загрузки шрифта → вертикальный
+// коллапс двигал макет хедера и давал CLS (иногда > 0.1). Фиксированная высота
+// держит бокс стабильным с первого пейнта. Целимся только в canvas, чтобы не
+// трогать span из performanceMode.
+canvas.fullName,
+canvas.shortName {
+  height: 2.1rem;
+}
+.nav a canvas {
+  height: 1.2rem;
+}
