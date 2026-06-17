@@ -116,3 +116,27 @@
     word-spacing: -15px;
   }
 }
+
+// Вход «видим сразу»: контент остаётся opacity:1 и лишь слегка съезжает вверх
+// через CSS-transform. В отличие от framer FadeIn (opacity:0 до гидратации),
+// крупнейший текст виден уже на FCP — это снижает Speed Index и LCP на мобиле,
+// при этом красивый slide-вход сохраняется. Transform не влияет на CLS.
+.revealSlide {
+  animation: aboutSlideUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.revealSlide.delayed {
+  animation-delay: 0.12s;
+}
+@keyframes aboutSlideUp {
+  from {
+    transform: translateY(18px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .revealSlide {
+    animation: none;
+  }
+}

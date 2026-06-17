@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { FadeIn, usePerformanceMode } from "@/shared/ui";
+import { usePerformanceMode } from "@/shared/ui";
 import dynamic from "next/dynamic";
 import styles from "./About.module.scss";
 
@@ -30,7 +30,7 @@ export const About = () => {
       id="about"
     >
       <div className={styles.container}>
-        <FadeIn>
+        <div className={styles.revealSlide}>
           <div className={styles.content}>
             <h2 className={styles.title}>
               <DecryptedText
@@ -82,8 +82,8 @@ export const About = () => {
               ))}
             </div>
           </div>
-        </FadeIn>
-        <FadeIn>
+        </div>
+        <div className={`${styles.revealSlide} ${styles.delayed}`}>
           <div className={styles.experience}>
             <div className={styles.statCard}>
               <span className={styles.number}>
@@ -110,7 +110,7 @@ export const About = () => {
               <span className={styles.label}>Проектов</span>
             </div>
           </div>
-        </FadeIn>
+        </div>
       </div>
     </section>
   );
