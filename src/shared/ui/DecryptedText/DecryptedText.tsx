@@ -1,11 +1,26 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
-import { motion, HTMLMotionProps } from "framer-motion";
+import { useEffect, useState, useRef, type HTMLAttributes } from "react";
 
 const styles = {
+  // Обёртка резервирует точный размер под ФИНАЛЬНЫЙ текст (через скрытый
+  // sizer ниже), а скрамбл рисуется поверх абсолютным слоем — поэтому анимация
+  // не меняет раскладку и не вызывает CLS.
   wrapper: {
     display: "inline-block" as const,
     whiteSpace: "pre-wrap" as const,
+    position: "relative" as const,
+  },
+  // sizer: финальный текст в потоке, но невидимый — держит размер/перенос строк
+  sizer: {
+    visibility: "hidden" as const,
+  },
+  // overlay: анимированный скрамбл поверх sizer'а, вне потока
+  overlay: {
+    position: "absolute" as const,
+    left: 0,
+    top: 0,
+    width: "100%",
+    height: "100%",
   },
   srOnly: {
     position: "absolute" as const,
@@ -19,7 +34,7 @@ const styles = {
   },
 };
 
-interface DecryptedTextProps extends HTMLMotionProps<"span"> {
+interface DecryptedTextProps extends HTMLAttributes<HTMLSpanElement> {
   text: string;
   speed?: number;
   maxIterations?: number;
@@ -245,7 +260,7 @@ export const DecryptedText = ({
   }
 
   return (
-    <motion.span
+    <span
       className={parentClassName}
       ref={containerRef}
       style={styles.wrapper}
@@ -254,7 +269,13 @@ export const DecryptedText = ({
     >
       <span style={styles.srOnly}>{text}</span>
 
-      <span aria-hidden="true">
+      {/* sizer: финальный текст держит размер блока (включая перенос строк),
+          поэтому скрамбл-слой поверх не двигает раскладку → нет CLS */}
+      <span aria-hidden="true" style={styles.sizer} className={className}>
+        {text}
+      </span>
+
+      <span aria-hidden="true" style={styles.overlay}>
         {displayText.split("").map((char, index) => {
           const isRevealedOrDone =
             revealedIndices.has(index) || !isScrambling || !isHovering;
@@ -269,6 +290,6 @@ export const DecryptedText = ({
           );
         })}
       </span>
-    </motion.span>
+    </span>
   );
 };
