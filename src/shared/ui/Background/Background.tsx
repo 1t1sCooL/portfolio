@@ -390,6 +390,45 @@ export const Background: React.FC<PixelBlastProps> = ({
   const visibilityRef = useRef({ visible: true });
   const speedRef = useRef(speed);
 
+  // Реально останавливаем рендер-цикл, когда вкладка скрыта или canvas вне
+  // вьюпорта. Без этого rAF продолжал крутить WebGL вхолостую (visibilityRef
+  // инициализировался true и больше нигде не менялся).
+  useEffect(() => {
+    if (!autoPauseOffscreen) {
+      visibilityRef.current.visible = true;
+      return;
+    }
+    const container = containerRef.current;
+    let onScreen = true;
+
+    const sync = () => {
+      visibilityRef.current.visible =
+        onScreen && document.visibilityState === "visible";
+    };
+
+    const onVisibilityChange = () => sync();
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    let observer: IntersectionObserver | undefined;
+    if (container && typeof IntersectionObserver !== "undefined") {
+      observer = new IntersectionObserver(
+        (entries) => {
+          onScreen = entries.some((e) => e.isIntersecting);
+          sync();
+        },
+        { threshold: 0 },
+      );
+      observer.observe(container);
+    }
+
+    sync();
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      observer?.disconnect();
+    };
+  }, [autoPauseOffscreen]);
+
   const threeRef = useRef<{
     renderer: THREE.WebGLRenderer;
     scene: THREE.Scene;

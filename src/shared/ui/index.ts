@@ -7,3 +7,4 @@ export { FuzzyText } from "./FuzzyText";
 export { GlitchText } from "./GlitchText";
 export { LoadingFallback } from "./LoadingFallback";
 export { usePerformanceMode } from "./hooks/usePerformanceMode";
+export { useDeferredMount } from "./hooks/useDeferredMount";

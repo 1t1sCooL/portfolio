@@ -1,6 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { ErrorBoundary, LoadingFallback } from "@/shared/ui";
+import { Hero } from "@/widgets/Hero";
 import { Suspense } from "react";
 
 const About = dynamic(() =>
@@ -16,6 +17,7 @@ const ProjectsSection = dynamic(() =>
 export const HomePage = () => {
   return (
     <main>
+      <Hero />
       <ErrorBoundary>
         <Suspense fallback={<LoadingFallback />}>
           <About />
