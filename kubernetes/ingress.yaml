@@ -5,6 +5,11 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: "traefik"
+    # Сжатие: ссылается на Middleware `compress`, определённый в репо `ingresses`
+    # (источник истины хоста). Дублируем аннотацию здесь, потому что для
+    # mmalabugin.ru существуют два Ingress'а с путём `/` (этот + mmalabugin-ru),
+    # и Traefik может выбрать роутер этого Ingress — пусть и он несёт compress.
+    traefik.ingress.kubernetes.io/router.middlewares: default-compress@kubernetescrd
 spec:
   rules:
     - host: mmalabugin.ru
