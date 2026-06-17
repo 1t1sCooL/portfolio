@@ -10,7 +10,13 @@ const pressStart2P = Press_Start_2P({
   weight: "400",
   subsets: ["cyrillic", "latin"],
   variable: "--font-press-start",
-  display: "swap",
+  // `optional` вместо `swap`: пиксельный Press Start 2P намного шире фолбэка,
+  // и поздний swap переверстывал все заголовки/nav → редкие, но огромные
+  // всплески CLS (PSI ловил до 0.421). При `optional` шрифт применяется только
+  // если успел загрузиться в короткое окно (быстрые/повторные заходы), иначе
+  // остаётся фолбэк без позднего reflow. Это убирает font-swap CLS.
+  display: "optional",
+  adjustFontFallback: true,
 });
 const geistSans = Geist({
   variable: "--font-geist-sans",
