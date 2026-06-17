@@ -5,6 +5,7 @@ metadata:
   namespace: default
   annotations:
     kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/router.middlewares: default-main-page-compress@kubernetescrd
 spec:
   rules:
     - host: mmalabugin.ru

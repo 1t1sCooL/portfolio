@@ -48,7 +48,7 @@ export const Header = () => {
       <nav className={styles.container}>
         <Link href="/" aria-label="Главная страница">
           {performanceMode ? (
-            <h1 className={styles.fullName}>Mikhail Alabugin</h1>
+            <span className={styles.fullName}>Mikhail Alabugin</span>
           ) : (
             <FuzzyText
               fontSize={"2rem"}
@@ -68,7 +68,7 @@ export const Header = () => {
         </Link>
         <Link href="/" aria-label="Главная страница">
           {performanceMode ? (
-            <h1 className={styles.shortName}>Mikhail</h1>
+            <span className={styles.shortName}>Mikhail</span>
           ) : (
             <FuzzyText
               fontSize={"2rem"}
@@ -86,7 +86,7 @@ export const Header = () => {
         </Link>
         <Link href="/" aria-label="Главная страница">
           {performanceMode ? (
-            <h1 className={styles.shortName}>Alabugin</h1>
+            <span className={styles.shortName}>Alabugin</span>
           ) : (
             <FuzzyText
               fontSize={"2rem"}
