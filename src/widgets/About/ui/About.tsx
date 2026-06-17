@@ -32,32 +32,25 @@ export const About = () => {
       <div className={styles.container}>
         <div className={styles.revealSlide}>
           <div className={styles.content}>
+            {/* Заголовок и абзацы рендерим статично. DecryptedText на крупном
+                многострочном тексте при скрамбле менял ширину символов →
+                перевёрстка строк → блок менял высоту и толкал контент ниже,
+                давая большой осциллирующий CLS. Скрамбл оставлен на коротких
+                однострочных элементах ниже (теги, счётчики), где рефлоу нет. */}
             <h2 className={styles.title}>
-              <DecryptedText
-                text="Превращаю сложные задачи в элегантный код"
-                animateOn="view"
-                speed={10}
-                maxIterations={4}
-                sequential
-                performanceMode={performanceMode}
-              />
+              Превращаю сложные задачи в элегантный код
             </h2>
 
             <div className={styles.text}>
               <p>
-                <DecryptedText
-                  text="Привет! Я Михаил, Software Developer с фокусом на создании высокопроизводительных веб-приложений. Мой подход базируется на архитектурной чистоте и удобстве для конечного пользователя."
-                  animateOn="view"
-                  speed={40}
-                  performanceMode={performanceMode}
-                />
+                Привет! Я Михаил, Software Developer с фокусом на создании
+                высокопроизводительных веб-приложений. Мой подход базируется на
+                архитектурной чистоте и удобстве для конечного пользователя.
               </p>
               <p>
-                <DecryptedText
-                  text="В данный момент специализируюсь на экосистеме React/Next.js и методологии Feature-Sliced Design, что позволяет мне строить масштабируемые проекты, которые легко поддерживать."
-                  animateOn="view"
-                  performanceMode={performanceMode}
-                />
+                В данный момент специализируюсь на экосистеме React/Next.js и
+                методологии Feature-Sliced Design, что позволяет мне строить
+                масштабируемые проекты, которые легко поддерживать.
               </p>
             </div>
 
