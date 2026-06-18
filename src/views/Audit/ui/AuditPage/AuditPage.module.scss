@@ -125,7 +125,7 @@ $pixel: var(--font-press-start), "Courier New", monospace;
 .metricLabel {
   display: block;
   color: var(--text-secondary);
-  font-size: 0.56rem;
+  font-size: 0.7rem;
   line-height: 1.7;
   margin-bottom: 14px;
 }
@@ -203,12 +203,12 @@ $pixel: var(--font-press-start), "Courier New", monospace;
 }
 .pkgTerm {
   color: var(--text-secondary);
-  font-size: 0.56rem;
+  font-size: 0.68rem;
   margin: 8px 0 20px;
 }
 .pkgSummary {
   color: var(--text-secondary);
-  font-size: 0.6rem;
+  font-size: 0.74rem;
   line-height: 1.9;
   margin: 0 0 22px;
 }
@@ -220,7 +220,7 @@ $pixel: var(--font-press-start), "Courier New", monospace;
   li {
     position: relative;
     padding: 11px 0 11px 24px;
-    font-size: 0.58rem;
+    font-size: 0.72rem;
     line-height: 1.7;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     &::before {
@@ -267,14 +267,14 @@ $pixel: var(--font-press-start), "Courier New", monospace;
   font-size: 1.1rem;
 }
 .stepTitle {
-  font-size: 0.78rem;
+  font-size: 0.92rem;
   line-height: 1.5;
   margin: 16px 0 12px;
 }
 .stepText {
   color: var(--text-secondary);
   line-height: 1.9;
-  font-size: 0.58rem;
+  font-size: 0.72rem;
   margin: 0;
 }
 
