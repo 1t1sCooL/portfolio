@@ -1,22 +1,16 @@
-// Акцент сайта (--accent-color в теме задан невалидно — rgba(rgb(...)), фон
-// получался прозрачным). Берём конкретный синий: им же подсвечены ::selection
-// и hover в навигации.
+// Акцент сайта (--accent-color в теме задан невалидно — rgba(rgb(...))).
 $accent: rgba(59, 130, 246, 1);
+// Единый «консольный» пиксельный шрифт на всю страницу.
+$pixel: var(--font-press-start), "Courier New", monospace;
 
 .page {
   background: var(--bg-color);
   color: var(--text-primary);
-  // Явный чистый sans-стек: Geist (display:optional) не всегда подхватывается,
-  // и без этого body-текст падал в Times (serif) — отсюда «робото + засечки».
-  // Заголовки переопределяют шрифт на пиксельный отдельно ниже.
-  font-family:
-    var(--font-geist-sans, system-ui),
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    Helvetica,
-    Arial,
-    sans-serif;
+  // Вся страница — Press Start 2P. Шрифт крупный и широкий, поэтому базово
+  // даём большой межстрочный и отрицательный межсловный интервал для читаемости.
+  font-family: $pixel;
+  line-height: 1.9;
+  word-spacing: -0.2em;
 }
 
 .container {
@@ -26,7 +20,7 @@ $accent: rgba(59, 130, 246, 1);
 }
 
 .section {
-  padding: 60px 0;
+  padding: 64px 0;
   @media (max-width: 768px) {
     padding: 44px 0;
   }
@@ -34,7 +28,6 @@ $accent: rgba(59, 130, 246, 1);
 
 // ---- hero ----
 .hero {
-  // отступ сверху, чтобы не уезжало под фиксированный хедер
   padding: 160px 0 40px;
   text-align: center;
   @media (max-width: 768px) {
@@ -42,24 +35,21 @@ $accent: rgba(59, 130, 246, 1);
   }
 }
 .kicker {
-  font-family: var(--font-press-start), sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   letter-spacing: 1px;
   color: #{$accent};
-  margin: 0 0 16px;
+  margin: 0 0 18px;
 }
 .h1 {
-  font-family: var(--font-press-start), sans-serif;
-  font-size: clamp(2rem, 6vw, 3.6rem);
-  line-height: 1.1;
-  margin: 0 0 24px;
-  word-spacing: -10px;
+  font-size: clamp(1.5rem, 5vw, 2.8rem);
+  line-height: 1.3;
+  margin: 0 0 26px;
 }
 .lead {
-  max-width: 720px;
-  margin: 0 auto 32px;
-  font-size: 1.15rem;
-  line-height: 1.7;
+  max-width: 680px;
+  margin: 0 auto 34px;
+  font-size: 0.72rem;
+  line-height: 2;
   color: var(--text-secondary);
 }
 .heroCta {
@@ -73,10 +63,9 @@ $accent: rgba(59, 130, 246, 1);
 .btnPrimary,
 .btnGhost {
   display: inline-block;
-  padding: 14px 28px;
+  padding: 16px 26px;
   border-radius: 14px;
-  font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.7rem;
   text-decoration: none;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -101,19 +90,18 @@ $accent: rgba(59, 130, 246, 1);
 
 // ---- generic headings ----
 .h2 {
-  font-family: var(--font-press-start), sans-serif;
-  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  font-size: clamp(1.1rem, 3.5vw, 1.9rem);
+  line-height: 1.35;
   text-align: center;
-  margin: 0 0 12px;
-  word-spacing: -8px;
+  margin: 0 0 16px;
 }
 .sub {
   text-align: center;
   color: var(--text-secondary);
-  max-width: 640px;
-  margin: 0 auto 40px;
-  font-size: 1.05rem;
-  line-height: 1.6;
+  max-width: 620px;
+  margin: 0 auto 44px;
+  font-size: 0.64rem;
+  line-height: 2;
 }
 
 // ---- кейс metrics ----
@@ -137,19 +125,19 @@ $accent: rgba(59, 130, 246, 1);
 .metricLabel {
   display: block;
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  margin-bottom: 12px;
+  font-size: 0.56rem;
+  line-height: 1.7;
+  margin-bottom: 14px;
 }
 .metricRow {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-family: var(--font-press-start), sans-serif;
 }
 .before {
   color: rgba(160, 160, 160, 0.9);
-  font-size: 1rem;
+  font-size: 0.68rem;
   text-decoration: line-through;
 }
 .arrow {
@@ -157,16 +145,15 @@ $accent: rgba(59, 130, 246, 1);
 }
 .after {
   color: #{$accent};
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.1rem;
 }
 .caseNote {
-  max-width: 720px;
-  margin: 28px auto 0;
+  max-width: 700px;
+  margin: 30px auto 0;
   text-align: center;
   color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.62rem;
+  line-height: 2;
 }
 
 // ---- пакеты ----
@@ -186,7 +173,7 @@ $accent: rgba(59, 130, 246, 1);
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  padding: 36px 28px;
+  padding: 38px 28px;
   display: flex;
   flex-direction: column;
 }
@@ -196,36 +183,34 @@ $accent: rgba(59, 130, 246, 1);
 }
 .badge {
   position: absolute;
-  top: -12px;
+  top: -11px;
   left: 50%;
   transform: translateX(-50%);
   background: #{$accent};
   color: #06130d;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 4px 14px;
+  font-size: 0.5rem;
+  padding: 6px 14px;
   border-radius: 100px;
   white-space: nowrap;
 }
 .pkgName {
-  font-family: var(--font-press-start), sans-serif;
-  font-size: 1.3rem;
-  margin: 0 0 12px;
+  font-size: 1rem;
+  margin: 0 0 16px;
 }
 .pkgPrice {
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-size: 1.05rem;
   color: #{$accent};
 }
 .pkgTerm {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  margin: 4px 0 18px;
+  font-size: 0.56rem;
+  margin: 8px 0 20px;
 }
 .pkgSummary {
   color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0 0 20px;
+  font-size: 0.6rem;
+  line-height: 1.9;
+  margin: 0 0 22px;
 }
 .pkgList {
   list-style: none;
@@ -234,24 +219,26 @@ $accent: rgba(59, 130, 246, 1);
   flex: 1;
   li {
     position: relative;
-    padding: 8px 0 8px 26px;
-    line-height: 1.5;
+    padding: 11px 0 11px 24px;
+    font-size: 0.58rem;
+    line-height: 1.7;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     &::before {
       content: "✓";
       position: absolute;
       left: 0;
+      top: 11px;
       color: #{$accent};
-      font-weight: 700;
     }
   }
 }
 .upsell {
-  max-width: 760px;
-  margin: 32px auto 0;
+  max-width: 740px;
+  margin: 34px auto 0;
   text-align: center;
   color: var(--text-secondary);
-  line-height: 1.7;
+  font-size: 0.6rem;
+  line-height: 2;
   strong {
     color: var(--text-primary);
   }
@@ -276,19 +263,18 @@ $accent: rgba(59, 130, 246, 1);
   padding: 28px 22px;
 }
 .stepNum {
-  font-family: var(--font-press-start), sans-serif;
   color: #{$accent};
-  font-size: 1.4rem;
+  font-size: 1.1rem;
 }
 .stepTitle {
-  font-size: 1.2rem;
-  margin: 14px 0 10px;
-  font-weight: 700;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: 16px 0 12px;
 }
 .stepText {
   color: var(--text-secondary);
-  line-height: 1.6;
-  font-size: 0.98rem;
+  line-height: 1.9;
+  font-size: 0.58rem;
   margin: 0;
 }
 
