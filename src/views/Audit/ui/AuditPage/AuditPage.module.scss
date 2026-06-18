@@ -6,6 +6,17 @@ $accent: rgba(59, 130, 246, 1);
 .page {
   background: var(--bg-color);
   color: var(--text-primary);
+  // Явный чистый sans-стек: Geist (display:optional) не всегда подхватывается,
+  // и без этого body-текст падал в Times (serif) — отсюда «робото + засечки».
+  // Заголовки переопределяют шрифт на пиксельный отдельно ниже.
+  font-family:
+    var(--font-geist-sans, system-ui),
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
 .container {

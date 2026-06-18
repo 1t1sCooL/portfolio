@@ -73,7 +73,7 @@ export default function RootLayout({
       line-height: 1.6;
       margin: 0;
       padding: 0;
-      font-family: var(--font-geist-sans), sans-serif;
+      font-family: var(--font-geist-sans, system-ui), -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     h1, h2, h3, h4 {
       color: rgba(237, 237, 237, 1);
