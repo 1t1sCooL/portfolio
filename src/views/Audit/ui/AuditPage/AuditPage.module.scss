@@ -1,0 +1,291 @@
+// Акцент сайта (--accent-color в теме задан невалидно — rgba(rgb(...)), фон
+// получался прозрачным). Берём конкретный синий: им же подсвечены ::selection
+// и hover в навигации.
+$accent: rgba(59, 130, 246, 1);
+
+.page {
+  background: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 60px 0;
+  @media (max-width: 768px) {
+    padding: 44px 0;
+  }
+}
+
+// ---- hero ----
+.hero {
+  // отступ сверху, чтобы не уезжало под фиксированный хедер
+  padding: 160px 0 40px;
+  text-align: center;
+  @media (max-width: 768px) {
+    padding: 120px 0 24px;
+  }
+}
+.kicker {
+  font-family: var(--font-press-start), sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  color: #{$accent};
+  margin: 0 0 16px;
+}
+.h1 {
+  font-family: var(--font-press-start), sans-serif;
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  line-height: 1.1;
+  margin: 0 0 24px;
+  word-spacing: -10px;
+}
+.lead {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.heroCta {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+// ---- buttons ----
+.btnPrimary,
+.btnGhost {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+.btnPrimary {
+  background: #{$accent};
+  color: #06130d;
+  &:hover {
+    transform: translateY(-2px);
+    opacity: 0.92;
+  }
+}
+.btnGhost {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  &:hover {
+    border-color: #{$accent};
+    transform: translateY(-2px);
+  }
+}
+
+// ---- generic headings ----
+.h2 {
+  font-family: var(--font-press-start), sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+  text-align: center;
+  margin: 0 0 12px;
+  word-spacing: -8px;
+}
+.sub {
+  text-align: center;
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin: 0 auto 40px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+// ---- кейс metrics ----
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 820px;
+  margin: 0 auto;
+  @media (max-width: 560px) {
+    grid-template-columns: 1fr;
+  }
+}
+.metric {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 24px;
+  text-align: center;
+}
+.metricLabel {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+}
+.metricRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--font-press-start), sans-serif;
+}
+.before {
+  color: rgba(160, 160, 160, 0.9);
+  font-size: 1rem;
+  text-decoration: line-through;
+}
+.arrow {
+  color: var(--text-secondary);
+}
+.after {
+  color: #{$accent};
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.caseNote {
+  max-width: 720px;
+  margin: 28px auto 0;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+// ---- пакеты ----
+.packages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+  @media (max-width: 980px) {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+}
+.pkg {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.pkgFeatured {
+  border-color: #{$accent};
+  box-shadow: 0 0 0 1px #{$accent};
+}
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #{$accent};
+  color: #06130d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+.pkgName {
+  font-family: var(--font-press-start), sans-serif;
+  font-size: 1.3rem;
+  margin: 0 0 12px;
+}
+.pkgPrice {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #{$accent};
+}
+.pkgTerm {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 4px 0 18px;
+}
+.pkgSummary {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+.pkgList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  flex: 1;
+  li {
+    position: relative;
+    padding: 8px 0 8px 26px;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    &::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #{$accent};
+      font-weight: 700;
+    }
+  }
+}
+.upsell {
+  max-width: 760px;
+  margin: 32px auto 0;
+  text-align: center;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  strong {
+    color: var(--text-primary);
+  }
+}
+
+// ---- процесс ----
+.process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+.step {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 28px 22px;
+}
+.stepNum {
+  font-family: var(--font-press-start), sans-serif;
+  color: #{$accent};
+  font-size: 1.4rem;
+}
+.stepTitle {
+  font-size: 1.2rem;
+  margin: 14px 0 10px;
+  font-weight: 700;
+}
+.stepText {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.98rem;
+  margin: 0;
+}
+
+// ---- final cta ----
+.finalCta {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 56px 24px;
+}
