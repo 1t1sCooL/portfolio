@@ -33,10 +33,10 @@ export const metadata: Metadata = {
     siteName: "Portfolio Alabugin",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Превью портфолио Михаила Алабугина",
+        alt: "Михаил Алабугин — frontend-разработчик",
       },
     ],
 
