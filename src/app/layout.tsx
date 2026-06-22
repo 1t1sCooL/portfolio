@@ -5,7 +5,7 @@ import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
 import { StructuredData } from "@/shared/seo";
 import { ClientBackground } from "@/shared/ui/Background/ClientBackground";
-import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
+import { Press_Start_2P } from "next/font/google";
 
 const pressStart2P = Press_Start_2P({
   weight: "400",
@@ -19,21 +19,6 @@ const pressStart2P = Press_Start_2P({
   display: "optional",
   adjustFontFallback: true,
 });
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  // optional: исключаем поздний font-swap тела-текста, который менял
-  // зарезервированный размер DecryptedText → остаточный CLS. Geist почти
-  // неотличим от системного фолбэка.
-  display: "optional",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "optional",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://mmalabugin.ru"),
   title: "Михаил Алабугин — frontend-разработчик (Next.js, React)",
@@ -77,7 +62,7 @@ export default function RootLayout({
       line-height: 1.6;
       margin: 0;
       padding: 0;
-      font-family: var(--font-geist-sans, system-ui), -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: var(--font-press-start), "Courier New", monospace;
     }
     h1, h2, h3, h4 {
       color: rgba(237, 237, 237, 1);
@@ -215,7 +200,7 @@ export default function RootLayout({
         <style dangerouslySetInnerHTML={{ __html: criticalCss }} />
       </Head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable}`}
+        className={pressStart2P.variable}
       >
         <ClientBackground
           style={{
