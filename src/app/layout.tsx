@@ -22,7 +22,7 @@ const pressStart2P = Press_Start_2P({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mmalabugin.ru"),
   title: "Михаил Алабугин — frontend-разработчик (Next.js, React)",
-  description: "Frontend-разработчик: Next.js, React, TypeScript. Делаю быстрые и доступные сайты с фокусом на производительность. Портфолио, аудит и ускорение сайтов.",
+  description: "Frontend-разработчик в Москве и удалённо: Next.js, React, TypeScript. Быстрые и доступные сайты, аудит и ускорение. Портфолио и услуги.",
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   verification: { yandex: "c289a4102b0abbd1" },

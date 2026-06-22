@@ -12,7 +12,7 @@ const STRUCTURED_DATA = [
     image: `${BASE_URL}/og-image.jpg`,
     jobTitle: "Frontend-разработчик",
     description:
-      "Frontend-разработчик: Next.js, React, TypeScript. Разработка быстрых и доступных сайтов, аудит и ускорение (Core Web Vitals).",
+      "Frontend-разработчик в Москве и удалённо: Next.js, React, TypeScript. Разработка быстрых и доступных сайтов, аудит и ускорение (Core Web Vitals).",
     email: "mailto:mmalabugin@gmail.com",
     knowsAbout: [
       "Frontend-разработка",
@@ -26,7 +26,15 @@ const STRUCTURED_DATA = [
       "Доступность (a11y)",
       "SEO",
     ],
-    areaServed: { "@type": "Country", name: "Россия" },
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Москва",
+      addressCountry: "RU",
+    },
+    areaServed: [
+      { "@type": "City", name: "Москва" },
+      { "@type": "Country", name: "Россия" },
+    ],
     sameAs: [
       "https://github.com/1t1sCooL",
       "https://t.me/ItIsCooL",
