@@ -8,6 +8,7 @@ const navLinks = [
   { name: "Обо мне", href: "/#about" },
   { name: "Стек", href: "/#skills" },
   { name: "Проекты", href: "/#projects" },
+  { name: "Блог", href: "/blog" },
   { name: "Контакты", href: "/#contact" },
 ];
 

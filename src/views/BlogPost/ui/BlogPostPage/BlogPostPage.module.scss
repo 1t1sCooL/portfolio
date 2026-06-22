@@ -1,0 +1,138 @@
+.page {
+  min-height: 100vh;
+  background: rgba(10, 10, 10, 0.8);
+}
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 140px 24px 80px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 32px;
+  font-size: 0.92rem;
+  color: rgba(160, 170, 185, 1);
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: rgba(96, 165, 250, 1);
+  }
+}
+
+.head {
+  margin-bottom: 40px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.label {
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.78rem;
+  color: rgba(147, 197, 253, 1);
+  background: rgba(59, 130, 246, 0.12);
+}
+
+.date {
+  font-size: 0.85rem;
+  color: rgba(160, 170, 185, 1);
+}
+
+.h1 {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: rgba(237, 237, 237, 1);
+}
+
+// Типографика тела статьи (рендерится из Markdown)
+.body {
+  font-size: 1.06rem;
+  line-height: 1.75;
+  color: rgba(213, 219, 230, 1);
+
+  :global(h2) {
+    margin: 44px 0 16px;
+    font-size: 1.5rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: rgba(237, 237, 237, 1);
+  }
+
+  :global(h3) {
+    margin: 32px 0 12px;
+    font-size: 1.2rem;
+    color: rgba(237, 237, 237, 1);
+  }
+
+  :global(p) {
+    margin: 0 0 20px;
+  }
+
+  :global(ul),
+  :global(ol) {
+    margin: 0 0 20px;
+    padding-left: 24px;
+  }
+
+  :global(li) {
+    margin-bottom: 8px;
+  }
+
+  :global(a) {
+    color: rgba(96, 165, 250, 1);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  :global(strong) {
+    color: rgba(237, 237, 237, 1);
+  }
+
+  :global(code) {
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 24px;
+    font-size: 0.96rem;
+  }
+
+  :global(th),
+  :global(td) {
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    text-align: left;
+  }
+
+  :global(th) {
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(237, 237, 237, 1);
+  }
+
+  :global(hr) {
+    margin: 40px 0;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 110px 18px 60px;
+  }
+}
