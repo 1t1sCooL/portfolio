@@ -14,14 +14,20 @@ const getCountByWidth = (width: number) => {
   return 2;
 };
 
+// Стартовый набор рендерится на СЕРВЕРЕ (детерминированная константа, чтобы не
+// было рассинхрона гидрации). Раньше было 0 → витрина уходила в HTML пустой и
+// не индексировалась поисковиками. responsive-логика ниже только наращивает
+// значение (Math.max), поэтому карточки не «исчезают» после маунта.
+const INITIAL_VISIBLE = 6;
+
 export const ProjectsSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [visibleCount, setVisibleCount] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
 
   useLayoutEffect(() => {
     const updateCount = () => {
       const count = getCountByWidth(window.innerWidth);
-      setVisibleCount(count);
+      setVisibleCount((prev) => Math.max(prev, count));
     };
 
     updateCount();

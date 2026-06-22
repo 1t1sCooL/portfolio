@@ -1,12 +1,7 @@
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
 import { Project, PROJECTS } from "@/shared/constants/projects";
 import styles from "./ProjectsList.module.scss";
-import { LoadingFallback, FadeIn } from "@/shared/ui";
-
-const ProjectCard = dynamic(() =>
-  import("@/entities/project").then((mod) => mod.ProjectCard),
-);
+import { FadeIn } from "@/shared/ui";
+import { ProjectCard } from "@/entities/project";
 
 interface ProjectsListProps {
   projects?: Project[];
@@ -26,9 +21,7 @@ export const ProjectsList = ({
         </FadeIn>
         <div className={styles.grid}>
           {projects.map((project, idx) => (
-            <Suspense key={project.id} fallback={<LoadingFallback />}>
-              <ProjectCard {...project} delay={idx * 0.1} />
-            </Suspense>
+            <ProjectCard key={project.id} {...project} delay={idx * 0.1} />
           ))}
         </div>
       </div>

@@ -399,44 +399,4 @@ export const PROJECTS: Project[] = [
     link: "https://mmalabugin.ru/GithubRepoSearch",
     github: "https://github.com/1t1sCooL/GithubRepoSearch",
   },
-  {
-    id: "2",
-    title: "Modal System",
-    description:
-      "Универсальный компонент модального окна с плавной анимацией и поддержкой порталов. Использован условный рендеринг для оптимизации DOM.",
-    image: "/projects/modal.png",
-    stack: ["React", "SCSS", "Vite", "Hooks"],
-    link: "https://your-demo-link.com",
-    github: "https://github.com/your-username/modal-react",
-  },
-  {
-    id: "1",
-    title: "День на Земле",
-    description:
-      "Интерактивная страница, вычисляющая точный возраст пользователя в днях, часах и минутах. Реализован динамический расчет данных в реальном времени.",
-    image: "/projects/day-on-earth.png",
-    stack: ["React", "Redux", "Vite", "CSS"],
-    link: "https://your-demo-link.com",
-    github: "https://github.com/your-username/day-on-earth",
-  },
-  {
-    id: "3",
-    title: "Counter App",
-    description:
-      "Визуально приятный счетчик с интуитивным интерфейсом. Проект сфокусирован на изучении управления состоянием и стилизации компонентов.",
-    image: "/projects/counter.png",
-    stack: ["React", "UseState", "SCSS", "Vite"],
-    link: "https://your-demo-link.com",
-    github: "https://github.com/your-username/counter",
-  },
-  {
-    id: "4",
-    title: "Сайт-портфолио",
-    description:
-      "Текущее портфолио: отзывчивое SPA с современной архитектурой FSD, анимациями и серверными компонентами Next.js.",
-    image: "/projects/portfolio.png",
-    stack: ["Next.js 15", "TypeScript", "FSD", "Framer Motion", "SCSS"],
-    link: "#",
-    github: "https://github.com/your-username/portfolio",
-  },
 ];
