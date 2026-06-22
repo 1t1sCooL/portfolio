@@ -3,6 +3,7 @@ import Head from "next/head";
 import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
+import { StructuredData } from "@/shared/seo";
 import { ClientBackground } from "@/shared/ui/Background/ClientBackground";
 import { Geist, Geist_Mono, Press_Start_2P } from "next/font/google";
 
@@ -37,6 +38,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://mmalabugin.ru"),
   title: "Алабугин Михаил",
   description: "Михаил Алабугин — frontend-разработчик. Портфолио: Next.js, React, TypeScript, Three.js, WebGL. Создаю быстрые и доступные интерфейсы с фокусом на производительность.",
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   openGraph: {
     title: "Алабугин Михаил | Software Developer",
     description: "Посмотрите мое портфолио и реализованные проекты",
@@ -229,6 +232,7 @@ export default function RootLayout({
           speed={0.1}
           edgeFade={0.1}
         />
+        <StructuredData />
         <Header />
         {children}
         <Footer />
