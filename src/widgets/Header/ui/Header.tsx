@@ -5,10 +5,10 @@ import { FuzzyText, usePerformanceMode } from "@/shared/ui";
 import Link from "next/link";
 
 const navLinks = [
-  { name: "Обо мне", href: "#about" },
-  { name: "Стек", href: "#skills" },
-  { name: "Проекты", href: "#projects" },
-  { name: "Контакты", href: "#contact" },
+  { name: "Обо мне", href: "/#about" },
+  { name: "Стек", href: "/#skills" },
+  { name: "Проекты", href: "/#projects" },
+  { name: "Контакты", href: "/#contact" },
 ];
 
 export const Header = () => {
@@ -106,7 +106,7 @@ export const Header = () => {
         <ul className={styles.nav}>
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a href={link.href}>
+              <Link href={link.href}>
                 {performanceMode ? (
                   <span className={styles.perfomanceNav}>{link.name}</span>
                 ) : (
@@ -121,7 +121,7 @@ export const Header = () => {
                     {link.name}
                   </FuzzyText>
                 )}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
