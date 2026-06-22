@@ -36,8 +36,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mmalabugin.ru"),
-  title: "Алабугин Михаил",
-  description: "Михаил Алабугин — frontend-разработчик. Портфолио: Next.js, React, TypeScript, Three.js, WebGL. Создаю быстрые и доступные интерфейсы с фокусом на производительность.",
+  title: "Михаил Алабугин — frontend-разработчик (Next.js, React)",
+  description: "Frontend-разработчик: Next.js, React, TypeScript. Делаю быстрые и доступные сайты с фокусом на производительность. Портфолио, аудит и ускорение сайтов.",
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   verification: { yandex: "c289a4102b0abbd1" },

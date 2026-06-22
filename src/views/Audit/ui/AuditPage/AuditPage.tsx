@@ -3,14 +3,14 @@ import { Reveal } from "@/shared/ui/Reveal";
 import styles from "./AuditPage.module.scss";
 
 export const auditMetadata: Metadata = {
-  title: "Аудит фронтенда — Михаил Алабугин",
+  title: "Аудит и ускорение сайта — Core Web Vitals | Алабугин",
   description:
-    "Продуктизированный аудит фронтенда: найду, что тормозит сайт и теряет конверсию. Замеры Lighthouse, приоритизация по impact/effort, отчёт-деливерабл и план фиксов. Фикс-цена, фикс-объём.",
+    "Найду, что тормозит сайт и теряет конверсию: Lighthouse-замеры, фикс LCP/CLS/INP, отчёт и план фиксов. Фикс-цена, фикс-объём. Кейс 50→100.",
   alternates: { canonical: "https://mmalabugin.ru/audit" },
   openGraph: {
-    title: "Аудит фронтенда — Михаил Алабугин",
+    title: "Аудит и ускорение сайта — Core Web Vitals",
     description:
-      "Ускорю сайт и покажу, что теряет конверсию. Замеры, приоритеты, план фиксов. Фикс-цена и фикс-объём.",
+      "Ускорю сайт и покажу, что теряет конверсию: фикс LCP/CLS/INP, рост PageSpeed. Замеры, приоритеты, план фиксов. Фикс-цена. Кейс 50→100.",
     url: "https://mmalabugin.ru/audit",
     type: "website",
   },
@@ -101,7 +101,7 @@ export const AuditPage = () => {
         <div className={styles.container}>
           <Reveal variant="up">
             <p className={styles.kicker}>Услуга</p>
-            <h1 className={styles.h1}>Аудит фронтенда</h1>
+            <h1 className={styles.h1}>Аудит фронтенда и ускорение сайта</h1>
             <p className={styles.lead}>
               Найду, что тормозит ваш сайт и теряет конверсию — с замерами,
               приоритетами и планом фиксов. Фикс-цена, фикс-объём,
@@ -145,6 +145,26 @@ export const AuditPage = () => {
             <p>
               Дополнительно: security-заголовки с нуля, brotli-сжатие −68%,
               avif-картинки, SSR-SEO — без потери анимаций сайта.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Что входит — Core Web Vitals (SEO-блок под ключи) */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <Reveal variant="up">
+            <h2 className={styles.h2}>Что входит в аудит Core Web Vitals</h2>
+            <p className={styles.sub}>
+              Замеряю и чиню метрики, по которым Google и Яндекс ранжируют сайт.
+            </p>
+          </Reveal>
+          <Reveal variant="up" className={styles.caseNote}>
+            <p>
+              LCP, CLS и INP, Total Blocking Time и Speed Index; разбор, почему
+              сайт медленно загружается; оптимизация изображений (WebP/AVIF),
+              шрифтов, бандла и main thread; рост баллов PageSpeed Insights и
+              Lighthouse на мобильных и десктопе — без потери дизайна и анимаций.
             </p>
           </Reveal>
         </div>
