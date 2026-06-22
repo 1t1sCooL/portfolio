@@ -40,6 +40,7 @@ export const metadata: Metadata = {
   description: "Михаил Алабугин — frontend-разработчик. Портфолио: Next.js, React, TypeScript, Three.js, WebGL. Создаю быстрые и доступные интерфейсы с фокусом на производительность.",
   alternates: { canonical: "/" },
   robots: { index: true, follow: true },
+  verification: { yandex: "c289a4102b0abbd1" },
   openGraph: {
     title: "Алабугин Михаил | Software Developer",
     description: "Посмотрите мое портфолио и реализованные проекты",
