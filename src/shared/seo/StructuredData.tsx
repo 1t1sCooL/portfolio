@@ -37,6 +37,7 @@ const STRUCTURED_DATA = [
     ],
     sameAs: [
       "https://github.com/1t1sCooL",
+      "https://career.habr.com/1t1scool",
       "https://t.me/ItIsCooL",
       "https://vk.com/1t1scool",
     ],
