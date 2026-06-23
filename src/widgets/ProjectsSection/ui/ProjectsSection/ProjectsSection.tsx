@@ -26,8 +26,13 @@ export const ProjectsSection = () => {
 
   useLayoutEffect(() => {
     const updateCount = () => {
-      const count = getCountByWidth(window.innerWidth);
-      setVisibleCount((prev) => Math.max(prev, count));
+      const cols = getCountByWidth(window.innerWidth);
+      // Грузим минимум 2 полных ряда и всегда кратно числу колонок, чтобы на
+      // широких экранах не оставалась «сиротская» карточка в неполном ряду.
+      setVisibleCount((prev) => {
+        const atLeast = Math.max(prev, cols * 2);
+        return Math.ceil(atLeast / cols) * cols;
+      });
     };
 
     updateCount();

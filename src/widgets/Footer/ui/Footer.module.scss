@@ -70,6 +70,15 @@
   padding: 8px 12px;
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.03);
+  // Длинный email/handle в пиксельном шрифте не помещался на ≤320 →
+  // разрешаем перенос внутри токена и даём flex-элементу сжиматься.
+  min-width: 0;
+  overflow-wrap: anywhere;
+
+  span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
 
   &:hover {
     color: #fff;
@@ -85,6 +94,9 @@
   }
   @media (max-width: 424px) {
     font-size: 0.8rem;
+  }
+  @media (max-width: 360px) {
+    font-size: 0.7rem;
   }
 }
 

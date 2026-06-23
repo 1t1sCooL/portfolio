@@ -22,6 +22,12 @@
 
   align-items: stretch;
 
+  // На телефонах — 1 карточка в ряд (две колонки слишком тесные, текст в
+  // пиксельном шрифте не помещается и карточки вылезают за край).
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+
   @media (min-width: 1185px) {
     grid-template-columns: repeat(3, 1fr);
   }

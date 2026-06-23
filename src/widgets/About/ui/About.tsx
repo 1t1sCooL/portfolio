@@ -7,7 +7,7 @@ const skills = [
   "Next.js",
   "React",
   "Node.js",
-  "FSD Architecture",
+  "FSD",
   "Sass/SCSS",
 ];
 

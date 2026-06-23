@@ -1,12 +1,19 @@
 import type { NextConfig } from "next";
 import path from "path";
 
+// React в dev-режиме (Turbopack) использует eval() для отладки → нужен
+// 'unsafe-eval' ТОЛЬКО локально. В проде eval не применяется, CSP строгий.
+const isDev = process.env.NODE_ENV !== "production";
+const scriptSrc = isDev
+  ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+  : "script-src 'self' 'unsafe-inline'";
+
 const securityHeaders = [
   {
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline'",
+      scriptSrc,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob:",
       "font-src 'self'",

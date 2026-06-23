@@ -14,6 +14,7 @@ const navLinks = [
 
 export const Header = () => {
   const [scrollOpacity, setScrollOpacity] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
   const performanceMode = usePerformanceMode();
 
   useEffect(() => {
@@ -37,11 +38,15 @@ export const Header = () => {
       style={{
         background: performanceMode
           ? "hsla(0, 0%, 0%, 0.6)"
-          : `rgba(var(--bg-rgb), ${scrollOpacity})`,
+          : menuOpen
+            ? "rgba(var(--bg-rgb), 0.98)"
+            : `rgba(var(--bg-rgb), ${scrollOpacity})`,
         backdropFilter:
-          scrollOpacity > 0 && !performanceMode ? "blur(12px)" : "none",
+          (scrollOpacity > 0 || menuOpen) && !performanceMode
+            ? "blur(12px)"
+            : "none",
         borderBottom:
-          scrollOpacity > 0
+          scrollOpacity > 0 || menuOpen
             ? "1px solid rgba(255, 255, 255, 0.05)"
             : "1px solid transparent",
       }}
@@ -104,10 +109,24 @@ export const Header = () => {
           )}
         </Link>
 
-        <ul className={styles.nav}>
+        <button
+          type="button"
+          className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ""}`}
+          aria-label={menuOpen ? "Закрыть меню" : "Открыть меню"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          <span className={styles.burgerBox} aria-hidden="true">
+            <span className={styles.bar} />
+            <span className={styles.bar} />
+            <span className={styles.bar} />
+          </span>
+        </button>
+
+        <ul className={`${styles.nav} ${menuOpen ? styles.navOpen : ""}`}>
           {navLinks.map((link) => (
             <li key={link.href}>
-              <Link href={link.href}>
+              <Link href={link.href} onClick={() => setMenuOpen(false)}>
                 {performanceMode ? (
                   <span className={styles.perfomanceNav}>{link.name}</span>
                 ) : (

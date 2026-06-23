@@ -3,11 +3,19 @@
   background: var(--bg-color);
   font-family: var(--font-press-start), sans-serif;
   word-spacing: -5px;
+  // Шапка фиксированная и на мобильных выше (имя в две строки, ~128px).
+  // Верхний padding должен превышать её высоту, иначе первый заголовок
+  // залезает под шапку и «слипается» с именем.
+  // 769–1300: шапка высокая (имя + навигация в 2 ряда ≈180px) → отступ больше.
+  @media (max-width: 1300px) {
+    padding: 190px 0 20px;
+  }
+  // ≤768: навигация скрыта (бургер), шапка = только имя в 2 строки (~128px).
   @media (max-width: 768px) {
-    padding: 50px 0 20px;
+    padding: 150px 0 20px;
   }
   @media (max-width: 570px) {
-    padding: 80px 0 20px;
+    padding: 160px 0 20px;
   }
 }
 .section.perfomanceMode {
@@ -28,6 +36,9 @@
   @media (max-width: 768px) {
     padding: 1rem 20px;
   }
+  @media (max-width: 360px) {
+    padding: 1rem 12px;
+  }
 }
 
 .overline {
@@ -46,8 +57,16 @@
   margin: 12px 0 24px 0;
   word-spacing: -15px;
   text-align: center;
+  // Широкий пиксельный шрифт + длинные слова переполняли узкие экраны →
+  // разрешаем перенос внутри слова и дополнительно ужимаем на 320–360.
+  overflow-wrap: break-word;
   @media (max-width: 424px) {
     font-size: 1.3rem;
+    // На мелком шрифте -15px съедал пробелы → слова слипались. Ослабляем.
+    word-spacing: -5px;
+  }
+  @media (max-width: 360px) {
+    font-size: 0.85rem;
   }
 }
 
@@ -56,6 +75,9 @@
   line-height: 1.7;
   font-size: 1.1rem;
   text-align: center;
+  // Длинные слова (напр. «высокопроизводительных») в пиксельном шрифте не
+  // помещались на узких экранах — разрешаем перенос внутри слова.
+  overflow-wrap: break-word;
   p {
     margin-bottom: 20px;
   }
@@ -64,6 +86,9 @@
   }
   @media (max-width: 424px) {
     font-size: 0.9rem;
+  }
+  @media (max-width: 360px) {
+    font-size: 0.82rem;
   }
 }
 
@@ -82,6 +107,14 @@
   border-radius: 100px;
   font-size: 0.9rem;
   color: white;
+  // Не даём тексту тега переноситься внутри пилюли (длинные вроде
+  // «FSD Architecture» в пиксельном шрифте ломали форму и вылезали).
+  // Перенос строк делает сам flex-контейнер .skills (flex-wrap).
+  white-space: nowrap;
+  @media (max-width: 360px) {
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
 }
 
 .experience {
