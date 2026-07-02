@@ -4,6 +4,7 @@ import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
 import { StructuredData } from "@/shared/seo";
+import { YandexMetrika } from "@/shared/analytics";
 import { ClientBackground } from "@/shared/ui/Background/ClientBackground";
 import { Press_Start_2P } from "next/font/google";
 
@@ -219,6 +220,7 @@ export default function RootLayout({
           edgeFade={0.1}
         />
         <StructuredData />
+        <YandexMetrika />
         <Header />
         {children}
         <Footer />
