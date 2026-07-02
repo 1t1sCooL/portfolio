@@ -4,9 +4,19 @@ import path from "path";
 // React в dev-режиме (Turbopack) использует eval() для отладки → нужен
 // 'unsafe-eval' ТОЛЬКО локально. В проде eval не применяется, CSP строгий.
 const isDev = process.env.NODE_ENV !== "production";
+
+// Яндекс.Метрика (счётчик + Вебвизор): официальный набор CSP-источников —
+// https://yandex.ru/support/metrica/code/install-counter-csp.html
+const metrika = {
+  script: "https://mc.yandex.ru https://yastatic.net",
+  img: "https://mc.yandex.ru",
+  connect: "https://mc.yandex.ru wss://mc.yandex.ru",
+  frame: "blob: https://mc.yandex.ru",
+};
+
 const scriptSrc = isDev
-  ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
-  : "script-src 'self' 'unsafe-inline'";
+  ? `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${metrika.script}`
+  : `script-src 'self' 'unsafe-inline' ${metrika.script}`;
 
 const securityHeaders = [
   {
@@ -15,10 +25,14 @@ const securityHeaders = [
       "default-src 'self'",
       scriptSrc,
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob:",
+      `img-src 'self' data: blob: ${metrika.img}`,
       "font-src 'self'",
-      "connect-src 'self'",
-      "frame-ancestors 'none'",
+      `connect-src 'self' ${metrika.connect}`,
+      // Вебвизор/карта кликов проигрывают сайт в iframe интерфейса Метрики —
+      // разрешаем framing только её доменам (clickjacking по-прежнему закрыт).
+      "frame-ancestors https://metrika.yandex.ru https://webvisor.com",
+      `child-src ${metrika.frame}`,
+      `frame-src ${metrika.frame}`,
       "object-src 'none'",
       "base-uri 'self'",
     ].join("; "),
