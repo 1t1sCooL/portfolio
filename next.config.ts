@@ -7,11 +7,14 @@ const isDev = process.env.NODE_ENV !== "production";
 
 // Яндекс.Метрика (счётчик + Вебвизор): официальный набор CSP-источников —
 // https://yandex.ru/support/metrica/code/install-counter-csp.html
+// mc.yandex.com — не опечатка: tag.js грузится с .ru, но хиты (watch/…)
+// Метрика шлёт на .com-домен.
 const metrika = {
-  script: "https://mc.yandex.ru https://yastatic.net",
-  img: "https://mc.yandex.ru",
-  connect: "https://mc.yandex.ru wss://mc.yandex.ru",
-  frame: "blob: https://mc.yandex.ru",
+  script: "https://mc.yandex.ru https://mc.yandex.com https://yastatic.net",
+  img: "https://mc.yandex.ru https://mc.yandex.com",
+  connect:
+    "https://mc.yandex.ru https://mc.yandex.com wss://mc.yandex.ru wss://mc.yandex.com",
+  frame: "blob: https://mc.yandex.ru https://mc.yandex.com",
 };
 
 const scriptSrc = isDev
