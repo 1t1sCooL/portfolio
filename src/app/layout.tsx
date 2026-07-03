@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Head from "next/head";
 import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
@@ -20,6 +20,15 @@ const pressStart2P = Press_Start_2P({
   display: "optional",
   adjustFontFallback: true,
 });
+// В App Router viewport и theme-color выносятся в отдельный `viewport`-экспорт
+// (не в metadata). theme-color = сплошной тёмный фон сайта (#0a0a0a) — красит
+// UI браузера/адресную строку на мобильных под тему страницы.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a0a0a",
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://mmalabugin.ru"),
   title: "Михаил Алабугин — frontend-разработчик (Next.js, React)",
