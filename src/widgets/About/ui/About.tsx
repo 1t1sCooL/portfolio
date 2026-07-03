@@ -24,7 +24,13 @@ export const About = () => {
       id="about"
     >
       <div className={styles.container}>
-        <div className={styles.revealSlide}>
+        {/* Первый (видимый над сгибом) блок — это LCP-блок страницы.
+            Рендерим его СТАТИЧНО: без slide-up (нет revealSlide) и без скрамбла
+            на заголовке (performanceMode). Entrance-анимации над сгибом
+            «дописывали» экран поздно → раздували Speed Index и LCP в лабе,
+            хотя реальный observed LCP ~300 мс. Скрамбл/анимации ниже и в других
+            секциях сохранены. */}
+        <div>
           <div className={styles.content}>
             <h2 className={styles.title}>
               <DecryptedText
@@ -33,7 +39,7 @@ export const About = () => {
                 speed={10}
                 maxIterations={4}
                 sequential
-                performanceMode={performanceMode}
+                performanceMode={true}
               />
             </h2>
 
