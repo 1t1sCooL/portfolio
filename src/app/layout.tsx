@@ -3,7 +3,7 @@ import Head from "next/head";
 import "./globals.scss";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
-import { StructuredData } from "@/shared/seo";
+import { StructuredData, OG_IMAGES } from "@/shared/seo";
 import { YandexMetrika } from "@/shared/analytics";
 import { ClientBackground } from "@/shared/ui/Background/ClientBackground";
 import { Press_Start_2P } from "next/font/google";
@@ -37,19 +37,12 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   verification: { yandex: "c289a4102b0abbd1" },
   openGraph: {
-    title: "Алабугин Михаил | Software Developer",
-    description: "Посмотрите мое портфолио и реализованные проекты",
+    title: "Михаил Алабугин — frontend-разработчик (Next.js, React)",
+    description:
+      "Frontend-разработчик: Next.js, React, TypeScript. Быстрые и доступные сайты, аудит и ускорение. Портфолио и услуги.",
     url: "https://mmalabugin.ru",
-    siteName: "Portfolio Alabugin",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Михаил Алабугин — frontend-разработчик",
-      },
-    ],
-
+    siteName: "Михаил Алабугин",
+    images: OG_IMAGES,
     locale: "ru_RU",
     type: "website",
   },

@@ -3,6 +3,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPostBySlug, type Post } from "@/entities/post";
+import { OG_IMAGES } from "@/shared/seo";
 import styles from "./BlogPostPage.module.scss";
 
 const BASE_URL = "https://mmalabugin.ru";
@@ -22,6 +23,7 @@ export const buildPostMetadata = (slug: string): Metadata => {
       url,
       type: "article",
       publishedTime: post.date,
+      images: OG_IMAGES,
     },
   };
 };

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/shared/ui/Reveal";
+import { OG_IMAGES } from "@/shared/seo";
 import styles from "./AuditPage.module.scss";
 
 export const auditMetadata: Metadata = {
@@ -13,6 +14,7 @@ export const auditMetadata: Metadata = {
       "Ускорю сайт и покажу, что теряет конверсию: фикс LCP/CLS/INP, рост PageSpeed. Замеры, приоритеты, план фиксов. Фикс-цена. Кейс 50→100.",
     url: "https://mmalabugin.ru/audit",
     type: "website",
+    images: OG_IMAGES,
   },
 };
 

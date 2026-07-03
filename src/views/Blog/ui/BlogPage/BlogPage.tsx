@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getAllPosts, PostCard } from "@/entities/post";
+import { OG_IMAGES } from "@/shared/seo";
 import styles from "./BlogPage.module.scss";
 
 export const blogMetadata: Metadata = {
@@ -13,6 +14,7 @@ export const blogMetadata: Metadata = {
       "Почему сайты тормозят и как чинить LCP, CLS, INP. Кейсы ускорения сайтов.",
     url: "https://mmalabugin.ru/blog",
     type: "website",
+    images: OG_IMAGES,
   },
 };
 
