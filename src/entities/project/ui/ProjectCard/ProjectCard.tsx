@@ -1,6 +1,18 @@
-import Image from "next/image";
+"use client";
+import Image, { type ImageLoaderProps } from "next/image";
 import { Reveal } from "@/shared/ui";
 import styles from "./ProjectCard.module.scss";
+
+// Отдаём заранее сгенерированные статические WebP (public/projects/webp/<name>-<w>.webp,
+// см. scripts/gen-project-webp.mjs) в обход /_next/image — прод-под ничего не
+// кодирует на лету (AVIF-энкод больших PNG на нём зависал → битые картинки на
+// мобиле). Ширины совпадают с массивом в генераторе.
+const WEBP_WIDTHS = [384, 640, 750, 828, 1080, 1200, 1920];
+const projectImageLoader = ({ src, width }: ImageLoaderProps) => {
+  const name = src.split("/").pop()!.replace(/\.[^.]+$/, "");
+  const w = WEBP_WIDTHS.find((x) => x >= width) ?? WEBP_WIDTHS[WEBP_WIDTHS.length - 1];
+  return `/projects/webp/${name}-${w}.webp`;
+};
 
 interface ProjectProps {
   title: string;
@@ -27,6 +39,7 @@ export const ProjectCard = ({
         src={image}
         alt={title}
         fill
+        loader={projectImageLoader}
         className={styles.img}
         // Согласовано с реальной сеткой колонок (ProjectsList): 2 кол. до 1184px,
         // 3 до 1534px, 4 до 1884px, далее 5. Прежние значения завышали ширину и
