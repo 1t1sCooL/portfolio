@@ -46,6 +46,13 @@ export const metadata: Metadata = {
     locale: "ru_RU",
     type: "website",
   },
+  // twitter:card + twitter:image. Заголовок/описание НЕ дублируем — Twitter/X
+  // (и LinkedIn) подтянут per-page og:title/og:description по фолбэку, так у
+  // каждой страницы своя подпись, а картинка и тип карточки заданы явно.
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og-image.jpg"],
+  },
   other: {
     "mailru-domain": "RiJeoRizDBJkgcXR",
   },
