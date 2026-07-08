@@ -3,7 +3,7 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { getPostBySlug, type Post } from "@/entities/post";
-import { OG_IMAGES } from "@/shared/seo";
+import { OG_IMAGES, JsonLd, breadcrumbJsonLd } from "@/shared/seo";
 import styles from "./BlogPostPage.module.scss";
 
 const BASE_URL = "https://mmalabugin.ru";
@@ -51,12 +51,16 @@ const articleJsonLd = (post: Post) => ({
   },
 });
 
+const breadcrumbFor = (post: Post) =>
+  breadcrumbJsonLd([
+    { name: "Главная", path: "/" },
+    { name: "Блог", path: "/blog" },
+    { name: post.title, path: `/blog/${post.slug}` },
+  ]);
+
 export const BlogPostPage = ({ post }: { post: Post }) => (
   <main className={styles.page}>
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd(post)) }}
-    />
+    <JsonLd data={[articleJsonLd(post), breadcrumbFor(post)]} />
     <article className={styles.container}>
       <Link href="/blog" className={styles.back}>
         ← Все статьи

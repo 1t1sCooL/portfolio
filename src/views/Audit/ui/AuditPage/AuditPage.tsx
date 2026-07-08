@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Reveal } from "@/shared/ui/Reveal";
-import { OG_IMAGES } from "@/shared/seo";
+import { OG_IMAGES, JsonLd, breadcrumbJsonLd } from "@/shared/seo";
 import styles from "./AuditPage.module.scss";
+
+const BASE_URL = "https://mmalabugin.ru";
+const AUDIT_URL = `${BASE_URL}/audit`;
 
 export const auditMetadata: Metadata = {
   title: "Аудит и ускорение сайта — Core Web Vitals | Алабугин",
@@ -69,6 +72,46 @@ const PACKAGES = [
   },
 ];
 
+// Числовые цены выводим из PACKAGES, чтобы разметка и вёрстка не разъезжались.
+const PACKAGE_PRICES = PACKAGES.map((p) => Number(p.price.replace(/\D/g, "")));
+
+const auditServiceJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "Аудит и ускорение сайта (Core Web Vitals)",
+  name: "Аудит и ускорение сайта — Core Web Vitals",
+  description:
+    "Аудит и ускорение сайта: Lighthouse-замеры, фикс LCP/CLS/INP, отчёт и план фиксов. Фикс-цена, фикс-объём.",
+  url: AUDIT_URL,
+  areaServed: { "@type": "Country", name: "Россия" },
+  provider: {
+    "@type": "Person",
+    name: "Михаил Алабугин",
+    url: BASE_URL,
+  },
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "RUB",
+    lowPrice: Math.min(...PACKAGE_PRICES),
+    highPrice: Math.max(...PACKAGE_PRICES),
+    offerCount: PACKAGES.length,
+    offers: PACKAGES.map((p, i) => ({
+      "@type": "Offer",
+      name: p.name,
+      description: p.summary,
+      price: PACKAGE_PRICES[i],
+      priceCurrency: "RUB",
+      url: AUDIT_URL,
+      availability: "https://schema.org/InStock",
+    })),
+  },
+};
+
+const auditBreadcrumbJsonLd = breadcrumbJsonLd([
+  { name: "Главная", path: "/" },
+  { name: "Аудит и ускорение", path: "/audit" },
+]);
+
 const PROCESS = [
   {
     n: "01",
@@ -98,6 +141,7 @@ const EMAIL = "mailto:mmalabugin@gmail.com";
 export const AuditPage = () => {
   return (
     <main className={styles.page}>
+      <JsonLd data={[auditServiceJsonLd, auditBreadcrumbJsonLd]} />
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.container}>
