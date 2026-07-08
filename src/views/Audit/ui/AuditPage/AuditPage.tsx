@@ -75,20 +75,20 @@ const PACKAGES = [
 // Числовые цены выводим из PACKAGES, чтобы разметка и вёрстка не разъезжались.
 const PACKAGE_PRICES = PACKAGES.map((p) => Number(p.price.replace(/\D/g, "")));
 
-const auditServiceJsonLd = {
+const SELLER = { "@type": "Person", name: "Михаил Алабугин", url: BASE_URL };
+
+// @type: Product (а не Service) — чтобы страница была eligible для Google
+// merchant/price rich result. Цены выводим из PACKAGES (единый источник).
+const auditProductJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  serviceType: "Аудит и ускорение сайта (Core Web Vitals)",
+  "@type": "Product",
   name: "Аудит и ускорение сайта — Core Web Vitals",
   description:
     "Аудит и ускорение сайта: Lighthouse-замеры, фикс LCP/CLS/INP, отчёт и план фиксов. Фикс-цена, фикс-объём.",
+  image: [`${BASE_URL}/og-image.jpg`],
   url: AUDIT_URL,
-  areaServed: { "@type": "Country", name: "Россия" },
-  provider: {
-    "@type": "Person",
-    name: "Михаил Алабугин",
-    url: BASE_URL,
-  },
+  category: "Веб-разработка — аудит производительности",
+  brand: { "@type": "Brand", name: "Михаил Алабугин" },
   offers: {
     "@type": "AggregateOffer",
     priceCurrency: "RUB",
@@ -103,6 +103,7 @@ const auditServiceJsonLd = {
       priceCurrency: "RUB",
       url: AUDIT_URL,
       availability: "https://schema.org/InStock",
+      seller: SELLER,
     })),
   },
 };
@@ -141,7 +142,7 @@ const EMAIL = "mailto:mmalabugin@gmail.com";
 export const AuditPage = () => {
   return (
     <main className={styles.page}>
-      <JsonLd data={[auditServiceJsonLd, auditBreadcrumbJsonLd]} />
+      <JsonLd data={[auditProductJsonLd, auditBreadcrumbJsonLd]} />
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.container}>

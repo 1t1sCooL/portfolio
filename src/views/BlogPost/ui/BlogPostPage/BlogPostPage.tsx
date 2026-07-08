@@ -40,6 +40,7 @@ const articleJsonLd = (post: Post) => ({
   "@type": "BlogPosting",
   headline: post.title,
   description: post.description,
+  image: [`${BASE_URL}/og-image.jpg`],
   datePublished: post.date,
   dateModified: post.date,
   inLanguage: "ru-RU",
