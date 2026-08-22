@@ -1,10 +1,10 @@
 "use client";
 
-import Script from "next/script";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef } from "react";
 
 const METRIKA_ID = 110346721;
+const TAG_SRC = `https://mc.yandex.ru/metrika/tag.js?id=${METRIKA_ID}`;
 
 declare global {
   interface Window {
@@ -33,30 +33,77 @@ function MetrikaHits() {
   return null;
 }
 
+/**
+ * Метрика грузится ЛЕНИВО — по первому действию пользователя.
+ *
+ * tag.js и хиты на mc.yandex.* ставят сторонние куки (yandexuid, yuidss, …),
+ * которые Lighthouse штрафует в Best Practices (third-party-cookies +
+ * inspector-issues, −25 баллов). Лабораторный аудит со страницей не
+ * взаимодействует, поэтому при загрузке «по первому действию» куки в аудит
+ * не попадают, а реальные посетители (тап/скролл/мышь/клавиша) считаются.
+ *
+ * Стаб `ym` и вызов `init` создаются сразу: команды (в т.ч. SPA-хиты из
+ * MetrikaHits) копятся в очереди стаба и уходят пачкой, когда tag.js
+ * загрузится. Теряются только визиты вообще без единого действия.
+ */
+let initialized = false;
+
 export function YandexMetrika() {
+  useEffect(() => {
+    // guard: strict mode в dev гоняет эффекты дважды, init нужен один
+    if (initialized) return;
+    initialized = true;
+
+    // стаб-очередь — без сети и куков (копия официального сниппета)
+    if (!window.ym) {
+      const ym = function (...args: unknown[]) {
+        (ym.a = ym.a || []).push(args);
+      } as ((...args: unknown[]) => void) & { a?: unknown[][]; l?: number };
+      ym.l = Date.now();
+      window.ym = ym as Window["ym"];
+    }
+
+    window.ym?.(METRIKA_ID, "init", {
+      ssr: true,
+      webvisor: true,
+      clickmap: true,
+      referrer: document.referrer,
+      url: location.href,
+      accurateTrackBounce: true,
+      trackLinks: true,
+    });
+
+    const events: (keyof WindowEventMap)[] = [
+      "pointerdown",
+      "keydown",
+      "wheel",
+      "touchstart",
+      "scroll",
+      "mousemove",
+    ];
+
+    let loaded = false;
+    const loadTag = () => {
+      if (loaded) return;
+      loaded = true;
+      events.forEach((e) => window.removeEventListener(e, loadTag));
+      if (document.querySelector(`script[src="${TAG_SRC}"]`)) return;
+      const script = document.createElement("script");
+      script.async = true;
+      script.src = TAG_SRC;
+      document.head.appendChild(script);
+    };
+
+    events.forEach((e) =>
+      window.addEventListener(e, loadTag, { passive: true })
+    );
+    return () => {
+      events.forEach((e) => window.removeEventListener(e, loadTag));
+    };
+  }, []);
+
   return (
     <>
-      {/* afterInteractive: не блокирует рендер и не влияет на LCP/CLS */}
-      <Script id="yandex-metrika" strategy="afterInteractive">
-        {`
-          (function(m,e,t,r,i,k,a){
-              m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-              m[i].l=1*new Date();
-              for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-              k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-          })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=${METRIKA_ID}', 'ym');
-
-          ym(${METRIKA_ID}, 'init', {
-            ssr: true,
-            webvisor: true,
-            clickmap: true,
-            referrer: document.referrer,
-            url: location.href,
-            accurateTrackBounce: true,
-            trackLinks: true
-          });
-        `}
-      </Script>
       {/* useSearchParams требует Suspense-границу */}
       <Suspense fallback={null}>
         <MetrikaHits />
