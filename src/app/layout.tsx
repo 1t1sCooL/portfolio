@@ -6,6 +6,7 @@ import { Header } from "@/widgets/Header";
 import { StructuredData, OG_IMAGES } from "@/shared/seo";
 import { YandexMetrika } from "@/shared/analytics";
 import { ClientBackground } from "@/shared/ui/Background/ClientBackground";
+import { PwaRegister } from "@/shared/ui/PwaRegister";
 import { Press_Start_2P } from "next/font/google";
 
 const pressStart2P = Press_Start_2P({
@@ -52,6 +53,11 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     images: ["/og-image.jpg"],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Алабугин М.",
   },
   other: {
     "mailru-domain": "RiJeoRizDBJkgcXR",
@@ -233,6 +239,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <PwaRegister />
       </body>
     </html>
   );

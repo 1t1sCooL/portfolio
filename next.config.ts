@@ -36,6 +36,9 @@ const securityHeaders = [
       "frame-ancestors https://metrika.yandex.ru https://webvisor.com",
       `child-src ${metrika.frame}`,
       `frame-src ${metrika.frame}`,
+      // Без явного worker-src браузер берёт child-src, где нет 'self', —
+      // и блокирует регистрацию /sw.js. blob: — для воркеров Вебвизора.
+      "worker-src 'self' blob:",
       "object-src 'none'",
       "base-uri 'self'",
     ].join("; "),
@@ -81,6 +84,45 @@ const nextConfig: NextConfig = {
       {
         source: "/(.*)",
         headers: securityHeaders,
+      },
+      {
+        // сам воркер не кешируем — иначе обновления SW застревают
+        source: "/sw.js",
+        headers: [
+          { key: "Cache-Control", value: "no-cache, must-revalidate" },
+          { key: "Service-Worker-Allowed", value: "/" },
+        ],
+      },
+      {
+        source: "/offline.html",
+        headers: [{ key: "Cache-Control", value: "no-cache, must-revalidate" }],
+      },
+      {
+        source: "/manifest.webmanifest",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=0, must-revalidate" },
+        ],
+      },
+      {
+        // иконки PWA меняются редко, но имена не хешированы — неделя + SWR
+        source: "/icons/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=2592000",
+          },
+        ],
+      },
+      {
+        // превью проектов: имена без хеша, контент может обновляться —
+        // сутки свежести + неделя stale-while-revalidate
+        source: "/projects/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=86400, stale-while-revalidate=604800",
+          },
+        ],
       },
     ];
   },
