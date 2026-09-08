@@ -141,7 +141,7 @@ const EMAIL = "mailto:mmalabugin@gmail.com";
 
 export const AuditPage = () => {
   return (
-    <main className={styles.page}>
+    <main id="main" tabIndex={-1} className={styles.page}>
       <JsonLd data={[auditProductJsonLd, auditBreadcrumbJsonLd]} />
       {/* Hero */}
       <section className={styles.hero}>

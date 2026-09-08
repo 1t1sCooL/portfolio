@@ -60,7 +60,7 @@ const breadcrumbFor = (post: Post) =>
   ]);
 
 export const BlogPostPage = ({ post }: { post: Post }) => (
-  <main className={styles.page}>
+  <main id="main" tabIndex={-1} className={styles.page}>
     <JsonLd data={[articleJsonLd(post), breadcrumbFor(post)]} />
     <article className={styles.container}>
       <Link href="/blog" className={styles.back}>

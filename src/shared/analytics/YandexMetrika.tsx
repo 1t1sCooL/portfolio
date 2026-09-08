@@ -114,7 +114,10 @@ export function YandexMetrika() {
           <img
             src={`https://mc.yandex.ru/watch/${METRIKA_ID}`}
             style={{ position: "absolute", left: "-9999px" }}
+            width={1}
+            height={1}
             alt=""
+            aria-hidden="true"
           />
         </div>
       </noscript>

@@ -22,7 +22,7 @@ export const BlogPage = () => {
   const posts = getAllPosts();
 
   return (
-    <main className={styles.page}>
+    <main id="main" tabIndex={-1} className={styles.page}>
       <div className={styles.container}>
         <header className={styles.head}>
           <p className={styles.kicker}>Блог</p>

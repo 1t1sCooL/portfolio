@@ -236,6 +236,9 @@ export default function RootLayout({
         />
         <StructuredData />
         <YandexMetrika />
+        <a href="#main" className="skipLink">
+          Перейти к содержимому
+        </a>
         <Header />
         {children}
         <Footer />

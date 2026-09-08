@@ -10,7 +10,7 @@ import { ProjectsSection } from "@/widgets/ProjectsSection";
 // LoadingFallback на время гидратации → огромный CLS и поздний LCP.
 export const HomePage = () => {
   return (
-    <main>
+    <main id="main" tabIndex={-1}>
       <Hero />
       <ErrorBoundary>
         <About />

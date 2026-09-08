@@ -1,6 +1,11 @@
 "use client";
 import { Reveal, usePerformanceMode, DecryptedText } from "@/shared/ui";
+import { PROJECTS } from "@/shared/constants";
 import styles from "./About.module.scss";
+
+// Счётчик проектов считается из реального списка, округление вниз до десятка
+// (43 → «40+»), чтобы цифра не отставала при добавлении карточек.
+const PROJECT_COUNT_LABEL = `${Math.floor(PROJECTS.length / 10) * 10}+`;
 
 const skills = [
   "TypeScript",
@@ -99,7 +104,7 @@ export const About = () => {
             <div className={styles.statCard}>
               <span className={styles.number}>
                 <DecryptedText
-                  text={"30+"}
+                  text={PROJECT_COUNT_LABEL}
                   animateOn="view"
                   speed={90}
                   maxIterations={34}
